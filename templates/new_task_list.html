@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Task List</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    let tasks = []; // Array to store tasks
+
+    function toggleDropdown() {
+      const dropdownMenu = document.getElementById('dropdown-menu');
+      dropdownMenu.classList.toggle('hidden');
+    }
+
+    function addTask(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get input values
+      const taskName = document.getElementById('taskName').value;
+      const taskDuration = document.getElementById('taskDuration').value;
+      const budget = document.getElementById('budget').value;
+      const projectDescription = document.getElementById('projectDescription').value;
+
+      // Create a new task object
+      const newTask = {
+        name: taskName,
+        duration: taskDuration,
+        budget: budget,
+        description: projectDescription,
+      };
+
+      // Add the new task to the tasks array
+      tasks.push(newTask);
+
+      // Clear the input fields
+      document.getElementById('taskName').value = '';
+      document.getElementById('taskDuration').value = '';
+      document.getElementById('budget').value = '';
+      document.getElementById('projectDescription').value = '';
+
+      // Render the tasks
+      renderTasks();
+    }
+
+    function renderTasks() {
+      const taskList = document.getElementById('task-list');
+      taskList.innerHTML = ''; // Clear the current task list
+
+      tasks.forEach((task) => {
+        const taskCard = document.createElement('div');
+        taskCard.className = 'bg-white shadow-md rounded p-4 mb-4';
+        taskCard.innerHTML = `
+          <h2 class="text-xl font-semibold">${task.name}</h2>
+          <p class="text-gray-600">Duration: ${task.duration}</p>
+          <p class="text-gray-600">Budget: $${task.budget}</p>
+          <p class="text-gray-600">Description: ${task.description}</p>
+        `;
+        taskList.appendChild(taskCard);
+      });
+    }
+  </script>
+</head>
+<body class="flex">
+  <!-- Sidebar -->
+  <div class="w-64 h-screen bg-gray-900 text-white p-6">
+    <div class="mb-8">
+      <h2 class="text-xl font-bold">Pegasus</h2> <!-- Changed to Pegasus -->
+    </div>
+    <ul>
+      <li class="mb-4">
+        <a href="index.html" class="block py-2 px-4 bg-gray-700 rounded">Home</a>
+      </li>
+      <li class="mb-4">
+        <a href="calender.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Calendar</a>
+      </li>
+      <li class="mb-4">
+        <a href="task_graph.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Task Time</a>
+      </li>
+      <li class="mb-4">
+        <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded">Pomodoro</a>
+      </li>
+      <li class="mb-4">
+        <a href="new_task_list.html" class="block py-2 px-4 hover:bg-gray-700 rounded">New Task list</a>
+      </li>
+      <li class="mb-4">
+        <a href="task_time.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Lists</a>
+      </li>
+      <li class="mb-4">
+          <a href="profile.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Profile</a>
+        </li>
+    </ul>
+    <div class="mt-8">
+      <h3 id="toggle-button" class="text-lg font-semibold mb-2 cursor-pointer">Project Members</h3>
+      <ul id="project-members" class="hidden">
+          <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 1</a></li>
+          <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 2</a></li>
+          <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 3</a></li>
+          <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 4</a></li>
+      </ul>
+  </div>
+  
+
+    <div class="mt-auto">
+      <button class="px-4 py-2 bg-red-500 rounded w-full">Logout</button>
+    </div>
+  </div>
+  <!-- Main content -->
+  <main class="flex-1 p-6 bg-gray-100">
+    <h1 class="text-3xl font-bold mb-6">New Task List</h1>
+
+    <div class="bg-white shadow-md rounded p-6 mb-6">
+      <form onsubmit="addTask(event)">
+        <div class="mb-4">
+          <label for="taskName" class="block text-gray-700">Task Name:</label>
+          <input type="text" id="taskName" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required>
+        </div>
+
+        <div class="mb-4">
+          <label for="taskDuration" class="block text-gray-700">Task Duration:</label>
+          <input type="text" id="taskDuration" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required>
+        </div>
+
+        <div class="mb-4">
+          <label for="budget" class="block text-gray-700">Budget:</label>
+          <input type="number" id="budget" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required>
+        </div>
+
+        <div class="mb-4">
+          <label for="projectDescription" class="block text-gray-700">Full Project Description:</label>
+          <textarea id="projectDescription" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required></textarea>
+        </div>
+
+        <a href="due_task.html" class="mt-4 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 inline-block text-center">Add Task</a>
+      </form>
+    </div>
+
+    <div id="task-list"></div> <!-- Container for displaying tasks -->
+
+    <div class="bg-white shadow-md rounded p-6">
+      <h2 class="text-xl font-semibold mb-4">Add Team Member</h2>
+
+      <!-- Dropdown button -->
+      <button onclick="toggleDropdown()" class="bg-blue-600 text-white py-2 px-4 rounded mb-4">
+        Add Team Member
+      </button>
+
+      <!-- Dropdown menu -->
+      <div id="dropdown-menu" class="hidden bg-white shadow-lg rounded mt-2 p-4">
+        <div class="mb-4">
+          <label for="team-member-name" class="block text-gray-700">Name:</label>
+          <input type="text" id="team-member-name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required>
+        </div>
+
+        <div class="mb-4">
+          <label for="team-member-email" class="block text-gray-700">Email:</label>
+          <input type="email" id="team-member-email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required>
+        </div>
+
+        <div class="mb-4">
+          <label for="team-member-experience" class="block text-gray-700">Experience:</label>
+          <input type="text" id="team-member-experience" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" placeholder="Years of experience" required>
+        </div>
+
+        <a href="project_member_detail.html" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Add Member</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

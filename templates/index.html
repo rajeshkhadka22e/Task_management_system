@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Management System</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="flex">
+    <!-- Sidebar -->
+    <div class="w-64 h-screen bg-gray-900 text-white p-6">
+      <div class="mb-8">
+        <h2 class="text-xl font-bold">Pegasus</h2> <!-- Changed to Pegasus -->
+      </div>
+      <ul>
+        <li class="mb-4">
+          <a href="index.html" class="block py-2 px-4 bg-gray-700 rounded">Home</a>
+        </li>
+        <li class="mb-4">
+            <a href="profile.html" class="block py-2 px-4 hover:bg-gray-700 rounded capitalize">Profile</a>
+          </li>
+      
+        <div class="mb-4">
+            <h3 id="toggle-button" class="block py-2 px-4 hover:bg-gray-700 rounded cursor-pointer">Projects</h3>
+            <ul id="project-members" class="hidden list-disc pl-8"> <!-- Use list-disc for bullets and pl-8 for indentation -->
+                <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded capitalize">project Name</a></li>
+                <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded capitalize">project Name</a></li>
+                <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded capitalize">project name</a></li>
+                <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded capitalize">project name</a></li>
+            </ul>
+        </div>
+        <li class="mb-4">
+          <a href="task_graph.html" class="block py-2 px-4 hover:bg-gray-700 rounded capitalize">Project Due Date</a>
+        </li>
+      
+
+        <li class="mb-4">
+          <a href="new_task_list.html" class="block py-2 px-4 hover:bg-gray-700 rounded capitalize">New Project list</a>
+        </li>
+        <li class="mb-4">
+          <a href="task_time.html" class="block py-2 px-4 hover:bg-gray-700 rounded capitalize">Completed project</a>
+        </li>
+        <li class="mb-4">
+            <a href="calender.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Calendar</a>
+          </li>
+      
+      </ul>
+      
+    
+
+      <div class="mt-auto">
+        <button class="px-4 py-2 bg-red-500 rounded w-full">Logout</button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-6">
+        <div>
+          <h1 class="text-2xl font-bold">Good Morning, Saurav!!</h1>
+          <p class="text-gray-600">It's Monday, 19 August 2024</p>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="text-gray-600">01:15:55 AM</span>
+          <div class="w-8 h-8 rounded-full bg-gray-300"></div> <!-- Profile Picture Placeholder -->
+        </div>
+      </div>
+
+      <!-- Task Overview Section -->
+      <div class="mb-6 p-6 bg-white shadow-md rounded">
+        <h2 class="text-xl font-bold mb-4">Today Task</h2>
+        <div class="flex space-x-4">
+          <button class="px-4 py-2 bg-blue-500 text-white rounded">Today's schedule</button>
+          <!-- <button class="px-4 py-2 bg-green-500 text-white rounded">Add Task</button> -->
+        </div>
+      </div>
+
+      <!-- Task Metrics -->
+      <div class="grid grid-cols-4 gap-4 mb-6">
+        <div class="p-6 bg-white shadow-md rounded">
+          <h3 class="text-lg font-bold">Total Tasks</h3>
+          <p class="text-2xl">32</p>
+          <p class="text-green-500">10% <span>↑</span></p>
+        </div>
+        <div class="p-6 bg-white shadow-md rounded">
+          <h3 class="text-lg font-bold">Ongoing Tasks</h3>
+          <p class="text-2xl">32</p>
+        </div>
+        <div class="p-6 bg-white shadow-md rounded">
+          <h3 class="text-lg font-bold">Completed Tasks</h3>
+          <p class="text-2xl">32</p>
+        </div>
+        <div class="p-6 bg-white shadow-md rounded">
+          <h3 class="text-lg font-bold">Overdue Tasks</h3>
+          <p class="text-2xl">32</p>
+        </div>
+      </div>
+
+      <!-- Upcoming Tasks & Calendar -->
+      <div class="flex justify-between">
+        <div class="w-full p-6 bg-white shadow-md rounded">
+          <h3 class="text-lg font-bold">Upcoming Tasks</h3>
+          <div class="flex-1 ">
+            <!-- <h3 class="text-xl font-semibold text-start mb-6">Task Detail</h3> -->
+        <div class="flex gap-4 pt-6">
+    
+            <div class="flex flex-col items-start ">
+                <div class="bg-white shadow-md rounded-lg  w-full max-w-md px-3 py-4">
+                    <h4 class="text-lg font-semibold mb-4">Task Title</h4>
+                    <p class="flex  mb-2"><strong>Description:</strong> This is a brief description of the task.</p>
+                    <p class="flex  mb-2"><strong>Assigned To:</strong> John Doe</p>
+                    <p class="flex  mb-2"><strong>Due Date:</strong> October 10, 2024</p>
+                    <p class="flex  mb-2"><strong>Status:</strong> In Progress</p>
+                    <p class="flex  mb-2"><strong>Priority:</strong> High</p>
+                    
+                    <div class="mt-4">
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Edit Task</button>
+                        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2">Delete Task</button>
+                        <a href="project_member_detail.html" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 ml-2">Project Member</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="flex flex-col items-start ">
+                <div class="bg-white shadow-md rounded-lg  w-full max-w-md px-3 py-4">
+                    <h4 class="text-lg font-semibold mb-4">Task Title</h4>
+                    <p class="flex  mb-2"><strong>Description:</strong> This is a brief description of the task.</p>
+                    <p class="flex  mb-2"><strong>Assigned To:</strong> John Doe</p>
+                    <p class="flex  mb-2"><strong>Due Date:</strong> October 10, 2024</p>
+                    <p class="flex  mb-2"><strong>Status:</strong> In Progress</p>
+                    <p class="flex  mb-2"><strong>Priority:</strong> High</p>
+                    
+                    <div class="mt-4">
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Edit Task</button>
+                        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2">Delete Task</button>
+                        <a href="project_member_detail.html" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 ml-2">Project Member</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        </div>
+        
+      </div>
+     
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

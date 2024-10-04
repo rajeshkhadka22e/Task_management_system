@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Time</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .gantt-bar {
+      height: 30px;
+    }
+    .stage-doc {
+      background-color: #e2e8f0;
+    }
+    .stage-working {
+      background-color: #63b3ed;
+    }
+    .stage-mid {
+      background-color: #f6ad55;
+    }
+    .stage-complete {
+      background-color: #48bb78;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="w-64 h-screen bg-gray-900 text-white p-6">
+        <div class="mb-8">
+          <h2 class="text-xl font-bold">Pegasus</h2> <!-- Changed to Pegasus -->
+        </div>
+        <ul>
+          <li class="mb-4">
+            <a href="index.html" class="block py-2 px-4 bg-gray-700 rounded">Home</a>
+          </li>
+          <li class="mb-4">
+            <a href="calender.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Calendar</a>
+          </li>
+          <li class="mb-4">
+            <a href="task_graph.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Task Time</a>
+          </li>
+          <li class="mb-4">
+            <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded">Pomodoro</a>
+          </li>
+          <li class="mb-4">
+            <a href="new_task_list.html" class="block py-2 px-4 hover:bg-gray-700 rounded">New Task list</a>
+          </li>
+          <li class="mb-4">
+            <a href="task_time.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Lists</a>
+          </li>
+          <li class="mb-4">
+              <a href="profile.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Profile</a>
+            </li>
+        </ul>
+        <div class="mt-8">
+          <h3 id="toggle-button" class="text-lg font-semibold mb-2 cursor-pointer">Project Members</h3>
+          <ul id="project-members" class="hidden">
+              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 1</a></li>
+              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 2</a></li>
+              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 3</a></li>
+              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 4</a></li>
+          </ul>
+      </div>
+      
+  
+        <div class="mt-auto">
+          <button class="px-4 py-2 bg-red-500 rounded w-full">Logout</button>
+        </div>
+      </div>
+    <!-- Main Content -->
+    <div id="task_time" class="flex-grow p-6">
+      <h1 class="text-2xl font-bold mb-6">Gantt Chart - Task Time Progress</h1>
+
+      <div class="bg-white shadow-md rounded p-4">
+        <table class="min-w-full table-auto border-collapse">
+          <thead>
+            <tr class="bg-gray-200 text-left">
+              <th class="px-4 py-2 border">Task Name</th>
+              <th class="px-4 py-2 border">Start Date</th>
+              <th class="px-4 py-2 border">Due Date</th>
+              <th class="px-4 py-2 border">Progress</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="px-4 py-2 border">Project A</td>
+              <td class="px-4 py-2 border">2024-10-01</td>
+              <td class="px-4 py-2 border">2024-10-31</td>
+              <td class="px-4 py-2">
+                <div class="flex space-x-1">
+                  <div class="gantt-bar stage-doc w-1/4 rounded"></div>
+                  <div class="gantt-bar stage-working w-1/4 rounded"></div>
+                  <div class="gantt-bar stage-mid w-1/4 rounded"></div>
+                  <div class="gantt-bar stage-complete w-1/4 rounded"></div>
+                </div>
+              </td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 border">Project B</td>
+              <td class="px-4 py-2 border">2024-09-20</td>
+              <td class="px-4 py-2 border">2024-10-10</td>
+              <td class="px-4 py-2">
+                <div class="flex space-x-1">
+                  <div class="gantt-bar stage-doc w-1/5 rounded"></div>
+                  <div class="gantt-bar stage-working w-1/5 rounded"></div>
+                  <div class="gantt-bar stage-mid w-2/5 rounded"></div>
+                  <div class="gantt-bar stage-complete w-1/5 rounded"></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

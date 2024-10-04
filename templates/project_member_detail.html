@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 h-screen bg-gray-900 text-white p-6">
+            <div class="mb-8">
+              <h2 class="text-xl font-bold">Pegasus</h2> <!-- Changed to Pegasus -->
+            </div>
+            <ul>
+              <li class="mb-4">
+                <a href="index.html" class="block py-2 px-4 bg-gray-700 rounded">Home</a>
+              </li>
+              <li class="mb-4">
+                <a href="calender.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Calendar</a>
+              </li>
+              <li class="mb-4">
+                <a href="task_graph.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Task Time</a>
+              </li>
+              <li class="mb-4">
+                <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded">Pomodoro</a>
+              </li>
+              <li class="mb-4">
+                <a href="new_task_list.html" class="block py-2 px-4 hover:bg-gray-700 rounded">New Task list</a>
+              </li>
+              <li class="mb-4">
+                <a href="task_time.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Lists</a>
+              </li>
+              <li class="mb-4">
+                  <a href="profile.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Profile</a>
+                </li>
+            </ul>
+            <div class="mt-8">
+              <h3 id="toggle-button" class="text-lg font-semibold mb-2 cursor-pointer">Project Members</h3>
+              <ul id="project-members" class="hidden">
+                  <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 1</a></li>
+                  <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 2</a></li>
+                  <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 3</a></li>
+                  <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 4</a></li>
+              </ul>
+          </div>
+          
+      
+            <div class="mt-auto">
+              <button class="px-4 py-2 bg-red-500 rounded w-full">Logout</button>
+            </div>
+          </div>
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <h1 class="text-3xl font-bold mb-6">Project Name: Project X</h1> <!-- Project Name Header -->
+            <h2 class="text-3xl font-bold mb-6">Team Members</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Team Manager Card -->
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <img src="https://via.placeholder.com/150" alt="Team Manager" class="mb-4 rounded-full mx-auto">
+                    <h3 class="text-xl font-semibold text-center">Team Manager</h3>
+                    <div class="mt-2">
+                        <p class="flex mb-1"><strong class="w-48">Name:</strong> John Doe</p>
+                        <p class="flex mb-1"><strong class="w-48">Experience:</strong> 10 years</p>
+                        <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> Project A, Project B</p>
+                        <p class="flex mb-1"><strong class="w-48">Email:</strong> john.doe@example.com</p>
+                    </div>
+                </div>
+
+                <!-- Developer Cards -->
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <img src="https://via.placeholder.com/150" alt="Developer" class="mb-4 rounded-full mx-auto">
+                    <h3 class="text-xl font-semibold text-center">Developer</h3>
+                    <div class="mt-2">
+                        <p class="flex mb-1"><strong class="w-48">Name:</strong> Alice Smith</p>
+                        <p class="flex mb-1"><strong class="w-48">Experience:</strong> 5 years</p>
+                        <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> Project A</p>
+                        <p class="flex mb-1"><strong class="w-48">Email:</strong> alice.smith@example.com</p>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <img src="https://via.placeholder.com/150" alt="Developer" class="mb-4 rounded-full mx-auto">
+                    <h3 class="text-xl font-semibold text-center">Developer</h3>
+                    <div class="mt-2">
+                        <p class="flex mb-1"><strong class="w-48">Name:</strong> Bob Johnson</p>
+                        <p class="flex mb-1"><strong class="w-48">Experience:</strong> 4 years</p>
+                        <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> Project B</p>
+                        <p class="flex mb-1"><strong class="w-48">Email:</strong> bob.johnson@example.com</p>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <img src="https://via.placeholder.com/150" alt="QA Engineer" class="mb-4 rounded-full mx-auto">
+                    <h3 class="text-xl font-semibold text-center">QA Engineer</h3>
+                    <div class="mt-2">
+                        <p class="flex mb-1"><strong class="w-48">Name:</strong> Dana White</p>
+                        <p class="flex mb-1"><strong class="w-48">Experience:</strong> 6 years</p>
+                        <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> Project A, Project B</p>
+                        <p class="flex mb-1"><strong class="w-48">Email:</strong> dana.white@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
