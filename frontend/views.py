@@ -55,3 +55,9 @@ def home(request):
 
     # def task_graph(request):
     #     return render(request, 'task_graph.html')
+
+def profile(request):
+    return render(request, 'profile.html') 
+
+def profile_card(request):
+    return render(request, 'profile_card.html') 
