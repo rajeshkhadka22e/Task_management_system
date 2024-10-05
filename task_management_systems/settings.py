@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
-
     # external app
     'frontend'
 ]
@@ -122,8 +120,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'  # URL to access static files
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Location of your static files folder
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Where static files will be collected for deployment
+# STATICFILES_DIRS = [BASE_DIR / 'static']  # Location of your static files folder
+# STATIC_ROOT = BASE_DIR / 'staticfiles'  # Where static files will be collected for deployment
+
 
 
 

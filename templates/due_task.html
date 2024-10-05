@@ -11,7 +11,7 @@
     <!-- Sidebar -->
     <div class="w-64 h-screen bg-gray-900 text-white p-6">
         <div class="mb-8">
-          <h2 class="text-xl font-bold">Pegasus</h2> <!-- Changed to Pegasus -->
+          <h2 class="text-xl font-bold">Pegasus</h2>
         </div>
         <ul>
           <li class="mb-4">
@@ -76,32 +76,22 @@
 
       <!-- Task Card -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for task in tasks %}
         <div class="card bg-white shadow-md rounded border border-green-500 mb-4">
           <div class="card-header bg-transparent border-green-500 p-4">
-            <h5 class="card-title text-lg font-bold">Task Name</h5>
+            <h5 class="card-title text-lg font-bold">{{ task.name }}</h5>
           </div>
           <div class="card-body p-4 text-gray-700">
-            <p><strong>Due Date:</strong> <span class="text-green-600">October 10, 2024</span></p>
-            <p><strong>Description:</strong> This is a detailed description of the task that provides more insight into what needs to be done.</p>
+            <p><strong>Due Date:</strong> <span class="text-green-600">{{ task.due_date }}</span></p>
+            <p><strong>Description:</strong> {{ task.description }}</p>
           </div>
           <div class="card-footer bg-transparent border-green-500 p-4">
             <p class="text-sm text-gray-500">Footer information or actions can go here.</p>
           </div>
         </div>
-
-        <!-- Additional cards can be added here -->
-        <div class="card bg-white shadow-md rounded border border-green-500 mb-4">
-          <div class="card-header bg-transparent border-green-500 p-4">
-            <h5 class="card-title text-lg font-bold">Another Task</h5>
-          </div>
-          <div class="card-body p-4 text-gray-700">
-            <p><strong>Due Date:</strong> <span class="text-green-600">October 15, 2024</span></p>
-            <p><strong>Description:</strong> Description of the second task goes here.</p>
-          </div>
-          <div class="card-footer bg-transparent border-green-500 p-4">
-            <p class="text-sm text-gray-500">Footer information or actions can go here.</p>
-          </div>
-        </div>
+        {% empty %}
+        <p>No due tasks found.</p>
+        {% endfor %}
       </div>
 
     </div>
