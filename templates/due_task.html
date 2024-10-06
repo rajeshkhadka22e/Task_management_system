@@ -1,100 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Management System - Task Time</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
-  <div class="flex">
-    <!-- Sidebar -->
-    <div class="w-64 h-screen bg-gray-900 text-white p-6">
-        <div class="mb-8">
-          <h2 class="text-xl font-bold">Pegasus</h2>
-        </div>
-        <ul>
-          <li class="mb-4">
-            <a href="index.html" class="block py-2 px-4 bg-gray-700 rounded">Home</a>
-          </li>
-          <li class="mb-4">
-            <a href="calender.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Calendar</a>
-          </li>
-          <li class="mb-4">
-            <a href="task_graph.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Task Time</a>
-          </li>
-          <li class="mb-4">
-            <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded">Pomodoro</a>
-          </li>
-          <li class="mb-4">
-            <a href="new_task_list.html" class="block py-2 px-4 hover:bg-gray-700 rounded">New Task list</a>
-          </li>
-          <li class="mb-4">
-            <a href="task_time.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Lists</a>
-          </li>
-          <li class="mb-4">
-              <a href="profile.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Profile</a>
-            </li>
-        </ul>
-        <div class="mt-8">
-          <h3 id="toggle-button" class="text-lg font-semibold mb-2 cursor-pointer">Project Members</h3>
-          <ul id="project-members" class="hidden">
-              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 1</a></li>
-              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 2</a></li>
-              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 3</a></li>
-              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 4</a></li>
-          </ul>
-      </div>
-      
-  
-        <div class="mt-auto">
-          <button class="px-4 py-2 bg-red-500 rounded w-full">Logout</button>
-        </div>
-      </div>
-    <!-- Main Content -->
-    <div class="flex-1 p-6">
-      <!-- Header -->
-      <div class="flex justify-between items-center mb-6">
-        <div>
-          <h1 class="text-2xl font-bold">Good Morning, Saurav!!</h1>
-          <p class="text-gray-600">It's Monday, 19 August 2024</p>
-        </div>
-        <div class="flex items-center space-x-4">
-          <span class="text-gray-600">01:15:55 AM</span>
-          <div class="w-8 h-8 rounded-full bg-gray-300"></div> <!-- Profile Picture Placeholder -->
-        </div>
-      </div>
+{% extends "base.html" %}
+{% load static %}
+{% block calender %}
 
-      <!-- Task Overview Section -->
-      <div class="mb-6 p-6 bg-white shadow-md rounded">
-        <h2 class="text-xl font-bold mb-4">Task Overview</h2>
-        <div class="flex space-x-4 mb-4">
-          <button class="px-4 py-2 bg-blue-500 text-white rounded">Today's Schedule</button>
-          <button class="px-4 py-2 bg-green-500 text-white rounded">Add Task</button>
-        </div>
+  <!-- Main Content -->
+  <div class="flex-1 p-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+      <div>
+        <h1 class="text-2xl font-bold">Good Morning, Saurav!!</h1>
+        <p class="text-gray-600">It's Monday, 19 August 2024</p>
       </div>
-
-      <!-- Task Card -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for task in tasks %}
-        <div class="card bg-white shadow-md rounded border border-green-500 mb-4">
-          <div class="card-header bg-transparent border-green-500 p-4">
-            <h5 class="card-title text-lg font-bold">{{ task.name }}</h5>
-          </div>
-          <div class="card-body p-4 text-gray-700">
-            <p><strong>Due Date:</strong> <span class="text-green-600">{{ task.due_date }}</span></p>
-            <p><strong>Description:</strong> {{ task.description }}</p>
-          </div>
-          <div class="card-footer bg-transparent border-green-500 p-4">
-            <p class="text-sm text-gray-500">Footer information or actions can go here.</p>
-          </div>
-        </div>
-        {% empty %}
-        <p>No due tasks found.</p>
-        {% endfor %}
+      <div class="flex items-center space-x-4">
+        <span class="text-gray-600">01:15:55 AM</span>
+        <div class="w-8 h-8 rounded-full bg-gray-300"></div> <!-- Profile Picture Placeholder -->
       </div>
-
     </div>
+
+    <!-- Task Overview Section -->
+    <div class="mb-6 p-6 bg-white shadow-md rounded">
+      <h2 class="text-xl font-bold mb-4">Task Overview</h2>
+      <div class="flex space-x-4 mb-4">
+        <button class="px-4 py-2 bg-blue-500 text-white rounded">Today's Schedule</button>
+        <button class="px-4 py-2 bg-green-500 text-white rounded">Add Task</button>
+      </div>
+    </div>
+
+    <!-- Task Card -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card bg-white shadow-md rounded border border-green-500 mb-4">
+        <div class="card-header bg-transparent border-green-500 p-4">
+          <h5 class="card-title text-lg font-bold">Task Name</h5>
+        </div>
+        <div class="card-body p-4 text-gray-700">
+          <p><strong>Due Date:</strong> <span class="text-green-600">October 10, 2024</span></p>
+          <p><strong>Description:</strong> This is a detailed description of the task that provides more insight into what needs to be done.</p>
+        </div>
+        <div class="card-footer bg-transparent border-green-500 p-4">
+          <p class="text-sm text-gray-500">Footer information or actions can go here.</p>
+        </div>
+      </div>
+
+      <!-- Additional cards can be added here -->
+      <div class="card bg-white shadow-md rounded border border-green-500 mb-4">
+        <div class="card-header bg-transparent border-green-500 p-4">
+          <h5 class="card-title text-lg font-bold">Another Task</h5>
+        </div>
+        <div class="card-body p-4 text-gray-700">
+          <p><strong>Due Date:</strong> <span class="text-green-600">October 15, 2024</span></p>
+          <p><strong>Description:</strong> Description of the second task goes here.</p>
+        </div>
+        <div class="card-footer bg-transparent border-green-500 p-4">
+          <p class="text-sm text-gray-500">Footer information or actions can go here.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
-</body>
-</html>
+
+  
+
+   {% endblock calender %}

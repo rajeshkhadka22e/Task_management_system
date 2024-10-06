@@ -119,10 +119,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'  # URL to access static files
-# STATICFILES_DIRS = [BASE_DIR / 'static']  # Location of your static files folder
-# STATIC_ROOT = BASE_DIR / 'staticfiles'  # Where static files will be collected for deployment
-
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'frontend/static']
 
 
 

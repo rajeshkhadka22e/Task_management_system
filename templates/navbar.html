@@ -1,55 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Management System</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
+<div class="w-64 h-full bg-gray-900 text-white p-6 flex flex-col">
+  <div class="mb-8">
+    <h2 class="text-xl font-bold">Pegasus</h2>
+  </div>
 
-    <div class="w-64 h-screen bg-gray-900 text-white p-6">
-        <div class="mb-8">
-          <h2 class="text-xl font-bold">Pegasus</h2> <!-- Changed to Pegasus -->
-        </div>
-        <ul>
-          <li class="mb-4">
-            <a href="index.html" class="block py-2 px-4 bg-gray-700 rounded">Home</a>
-          </li>
-          <li class="mb-4">
-            <a href="calender.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Calendar</a>
-          </li>
-          <li class="mb-4">
-            <a href="task_graph.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Task Time</a>
-          </li>
-          <li class="mb-4">
-            <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded">Pomodoro</a>
-          </li>
-          <li class="mb-4">
-            <a href="new_task_list.html" class="block py-2 px-4 hover:bg-gray-700 rounded">New Task list</a>
-          </li>
-          <li class="mb-4">
-            <a href="task_time.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Lists</a>
-          </li>
-          <li class="mb-4">
-              <a href="profile.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Profile</a>
-            </li>
+  <!-- Scrollable content area -->
+  <div class="flex-grow overflow-y-auto">
+    <ul>
+      <li class="mb-4">
+        <a href="/" class="block py-2 px-4 bg-gray-700 rounded">Home</a>
+      </li>
+      <li class="mb-4">
+        <a href="{% url "new_task_list" %}" class="block py-2 px-4 hover:bg-gray-700 rounded">Project</a>
+      </li>
+      <div class="mb-2">
+        <h3 id="toggle-button" class="flex items-center justify-between px-4 py-4 hover:bg-gray-700 rounded cursor-pointer">
+          <span>Project Members</span>
+          <svg class="w-4 h-4 transition-transform duration-200 transform" id="dropdown-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </h3>
+        <ul id="project-members" class="hidden px-4 py-4">
+          <li class="mb-2"><a href="{% url "project_member_detail" %}" class="block py-1 px-2 hover:bg-gray-700 rounded">Project 1</a></li>
+          <li class="mb-2"><a href="{% url "project_member_detail" %}" class="block py-1 px-2 hover:bg-gray-700 rounded">Project 2</a></li>
+          <li class="mb-2"><a href="{% url "project_member_detail" %}" class="block py-1 px-2 hover:bg-gray-700 rounded">Project 3</a></li>
+          <li class="mb-2"><a href="{% url "project_member_detail" %}" class="block py-1 px-2 hover:bg-gray-700 rounded">Project 4</a></li>
         </ul>
-        <div class="mt-8">
-          <h3 id="toggle-button" class="text-lg font-semibold mb-2 cursor-pointer">Project Members</h3>
-          <ul id="project-members" class="hidden">
-              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 1</a></li>
-              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 2</a></li>
-              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 3</a></li>
-              <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 4</a></li>
-          </ul>
       </div>
-      
-  
-        <div class="mt-auto">
-          <button class="px-4 py-2 bg-red-500 rounded w-full">Logout</button>
-        </div>
-      </div>
-<script src="script.js"></script>  
-</body>
-</html>
+      <li class="mb-4">
+        <a href="{% url "task_graph" %}" class="block py-2 px-4 hover:bg-gray-700 rounded">Project Duration</a>
+      </li>
+      <li class="mb-4">
+        <a href="{% url "task_time" %}" class="block py-2 px-4 hover:bg-gray-700 rounded">Completed Project</a>
+      </li>
+      <li class="mb-4">
+        <a href="{% url "profile" %}" class="block py-2 px-4 hover:bg-gray-700 rounded">Profile</a>
+      </li>
+      <li class="mb-4">
+        <a href="{% url "calender" %}" class="block py-2 px-4 hover:bg-gray-700 rounded">Calendar</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Logout button fixed at the bottom -->
+  <div class="mt-auto">
+    <button class="px-4 py-2 bg-red-500 rounded w-full">Logout</button>
+  </div>
+</div>

@@ -1,59 +1,6 @@
-<!-- templates/calendar/year_calendar.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar {{ year }}</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
-    <div class="flex">
-        <!-- Sidebar -->
-        <div class="w-64 h-screen bg-gray-900 text-white p-6">
-            <div class="mb-8">
-              <h2 class="text-xl font-bold">Pegasus</h2> <!-- Changed to Pegasus -->
-            </div>
-            <ul>
-              <li class="mb-4">
-                <a href="index.html" class="block py-2 px-4 bg-gray-700 rounded">Home</a>
-              </li>
-              <li class="mb-4">
-                <a href="calender.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Calendar</a>
-              </li>
-              <li class="mb-4">
-                <a href="task_graph.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Task Time</a>
-              </li>
-              <li class="mb-4">
-                <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded">Pomodoro</a>
-              </li>
-              <li class="mb-4">
-                <a href="new_task_list.html" class="block py-2 px-4 hover:bg-gray-700 rounded">New Task list</a>
-              </li>
-              <li class="mb-4">
-                <a href="task_time.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Lists</a>
-              </li>
-              <li class="mb-4">
-                  <a href="profile.html" class="block py-2 px-4 hover:bg-gray-700 rounded">Profile</a>
-                </li>
-            </ul>
-            <div class="mt-8">
-              <h3 id="toggle-button" class="text-lg font-semibold mb-2 cursor-pointer">Project Members</h3>
-              <ul id="project-members" class="hidden">
-                  <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 1</a></li>
-                  <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 2</a></li>
-                  <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 3</a></li>
-                  <li class="mb-2"><a href="project_member_detail.html" class="block py-1 px-2 hover:bg-gray-700 rounded">project 4</a></li>
-              </ul>
-          </div>
-          
-      
-            <div class="mt-auto">
-              <button class="px-4 py-2 bg-red-500 rounded w-full">Logout</button>
-            </div>
-          </div>
-
-        <!-- Main Content -->
+{% extends "base.html" %}
+{% load static %}
+{% block calender %}
         <div class="flex-1 p-6">
             <h1 class="text-3xl font-bold mb-6">Calendar for {{ year }}</h1>
 
@@ -91,6 +38,4 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
-</body>
-</html>
+{% endblock calender %}

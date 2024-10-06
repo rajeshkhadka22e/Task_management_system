@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Task Management System{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<!-- Flex container for the layout -->
+<div class="flex h-screen ">
+    <!-- Include the fixed sidebar -->
+    {% include "navbar.html" %}
+
+    <!-- Hero content area -->
+   
+        {% block hero %}
+        <!-- Main content will go here -->
+        {% endblock %}
+
+        {% block calender %}{% endblock calender %}
+    </div>
+</div>
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

@@ -60,4 +60,39 @@ def profile(request):
     return render(request, 'profile.html') 
 
 def profile_card(request):
-    return render(request, 'profile_card.html') 
+    return render(request, 'profile_card.html')
+
+
+
+def calender(request):
+    return render(request, 'calender.html')
+
+
+
+def developer_personal_profile(request):
+    return render(request, 'developer_personal_profile.html')
+
+
+
+def due_task(request):
+    return render(request, 'due_task.html')
+
+
+
+
+def new_task_list(request):
+    return render(request, 'new_task_list.html')
+
+
+
+def project_member_detail(request):
+    return render(request, 'project_member_detail.html')
+
+def task_graph(request):
+    return render(request, 'task_graph.html')
+
+
+def task_time(request):
+    return render(request, 'task_time.html')
+
+
