@@ -120,8 +120,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'frontend/static']
 
+# Directory where Django will search for additional static files
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# Directory where static files will be collected for production use
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 MEDIA_URL = '/media/'  # URL to access media files
