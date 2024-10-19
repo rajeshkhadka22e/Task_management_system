@@ -1,43 +1,42 @@
 {% extends "base.html" %}
 {% load static %}
 {% block calender %}
+<!-- Main Content -->
+<div class="flex-1 p-6">
+    <h3 class="text-xl font-semibold text-center mb-6">Pegasus</h3>
 
-        <!-- Main Content -->
-        <div class="flex-1 p-6">
-            <h3 class="text-xl font-semibold text-center mb-6">Pegasus</h3>
-        
-            <div class="flex flex-wrap justify-center gap-4">
-                <!-- Team Manager Card -->
-                <div class="bg-white shadow-md rounded-lg p-4 max-w-sm w-full">
-                    <img src="https://via.placeholder.com/150" alt="Team Manager" class="mb-4 rounded-full mx-auto w-32 h-32"> <!-- Centered and sized image -->
-                    <div class="bg-white shadow-md rounded-lg p-6 min-h-[300px] w-full max-w-sm">
-                        <h3 class="text-xl font-semibold text-center">Team Manager</h3>
-                    
-                        
-                            <p class="mt-4 text-center text-gray-600">
-                                John Doe is an experienced team manager with a proven track record in leading projects to success and enhancing team collaboration.
-                            </p>
-                        
-                            <div class="mt-8 flex">
-                                <div class="mr-4">
-                                    <p><strong>Name:</strong></p>
-                                    <p><strong>Experience:</strong></p>
-                                    <p><strong>Working Projects:</strong></p>
-                                    <p><strong>Email:</strong></p>
-                                </div>
-                                <div>
-                                    <p class="flex justify-start mb-1">John Doe</p>
-                                    <p class="flex justify-start mb-1">10 years</p>
-                                    <p class="flex justify-start mb-1">Project A, Project B</p>
-                                    <p class="flex justify-start mb-1">john.doe@example.com</p>
-                                </div>
-                            </div>
-                      
-                        
+    <div class="flex flex-wrap justify-center gap-4">
+        <!-- Profile Card -->
+        <div class="bg-white shadow-md rounded-lg p-4 max-w-sm w-full">
+            {% if profile.profile_image %}
+                <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}" class="mb-4 rounded-full mx-auto w-32 h-32">
+            {% else %}
+                <img src="https://via.placeholder.com/150" alt="No Image Available" class="mb-4 rounded-full mx-auto w-32 h-32">
+            {% endif %}
+            
+            <div class="bg-white shadow-md rounded-lg p-6 min-h-[300px] w-full max-w-sm">
+                <h3 class="text-xl font-semibold text-center">{{ profile.role }}</h3>
+                
+                <p class="mt-4 text-center text-gray-600 capitalize">
+                    {{ request.user.get_full_name }} is an experienced {{ request.user.role }} with a proven track record in leading projects to success.
+                </p>
+
+                <div class="mt-8 flex">
+                    <div class="mr-4">
+                        <p><strong>Name:</strong></p>
+                        <p><strong>experienced:</strong></p>
+                        <p><strong>Email:</strong></p>
+                        <p><strong>Role:</strong></p>
                     </div>
-                    
-                    
+                    <div>
+                        <p class="flex justify-start mb-1">{{ request.user.get_full_name }}</p>
+                        <p class="flex justify-start mb-1">{{ request.user.experience }}</p>
+                        <p class="flex justify-start mb-1">{{ request.user.email }}</p>
+                        <p class="flex justify-start mb-1">{{ request.user.role }}</p>
+                    </div>
                 </div>
             </div>
         </div>
-    {% endblock calender %}
+    </div>
+</div>
+{% endblock calender %}

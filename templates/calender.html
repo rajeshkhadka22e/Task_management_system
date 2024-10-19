@@ -1,41 +1,28 @@
 {% extends "base.html" %}
 {% load static %}
 {% block calender %}
-        <div class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-6">Calendar for {{ year }}</h1>
+<div id='calendar' class="w-full"></div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {% for month, month_calendar in zip(months, month_calendars) %}
-                    <div class="bg-white shadow-md rounded-lg p-4">
-                        <h2 class="text-xl font-semibold">{{ month }}</h2>
-                        <table class="min-w-full table-auto border-collapse">
-                            <thead>
-                                <tr class="bg-gray-200">
-                                    <th class="border px-2 py-1">Mo</th>
-                                    <th class="border px-2 py-1">Tu</th>
-                                    <th class="border px-2 py-1">We</th>
-                                    <th class="border px-2 py-1">Th</th>
-                                    <th class="border px-2 py-1">Fr</th>
-                                    <th class="border px-2 py-1">Sa</th>
-                                    <th class="border px-2 py-1">Su</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for week in month_calendar %}
-                                    <tr>
-                                        {% for day in week %}
-                                            <td class="border px-2 py-1 {% if day == 0 %}text-gray-400{% endif %}">
-                                                {% if day != 0 %}
-                                                    {{ day }}
-                                                {% endif %}
-                                            </td>
-                                        {% endfor %}
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-{% endblock calender %}
+<!-- Include FullCalendar CDN -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth', // Set default view
+
+      // Fetch events dynamically from Django view
+      events: '/api/events/',  // This points to the Django view that returns events in JSON format
+
+      // Optional: Add interactivity (like event click)
+      eventClick: function(info) {
+        alert('Event: ' + info.event.title);
+      }
+    });
+
+    calendar.render(); // Render the calendar
+  });
+</script>
+{% endblock %}

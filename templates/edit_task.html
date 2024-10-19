@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Edit Task: {{ task.title }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Ensure this displays the form fields -->
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update Task</button>
+    </form>
+    <a href="{% url 'home' %}" class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</a>
+
+    {% if form.errors %}
+    <div class="error">
+        {{ form.errors }}
+    </div>
+{% endif %}
+
+{% endblock %}

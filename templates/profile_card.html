@@ -1,42 +1,39 @@
 {% extends "base.html" %}
-{% load static %}
-{% block calender %}
-  <!-- Main content -->
-  <main class="flex-1 p-6 bg-gray-100">
-    <h1 class="text-3xl font-bold mb-6">User Profiles</h1>
+{% block hero %}
+<main class="flex-1 p-6 bg-gray-100">
+    <h1 class="text-3xl font-bold mb-6">User Profile</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- User Card 1 -->
-      <div class="bg-white shadow-md rounded-lg p-4 text-center">
-        <img src="https://via.placeholder.com/150" alt="User 1" class="w-32 h-32 rounded-full mx-auto mb-4">
-        <h2 class="text-xl font-semibold">John Doe</h2>
-        <p class="text-gray-600">Developer</p>
-        <p class="text-gray-500">johndoe@example.com</p>
-      </div>
+    <div class="bg-white shadow-md rounded p-6">
+        <h2 class="text-xl font-semibold mb-4">Profile Image</h2>
+        <div class="mb-4">
+            {% if form.instance.profile_image %}
+                <img id="image-preview" src="{{ form.instance.profile_image.url }}" alt="Image Preview" class="w-32 h-32 mb-4 rounded-full border">
+            {% endif %}
+            <label for="id_profile_image" class="block text-gray-700">Upload Image:</label>
+            {{ form.profile_image }}
+        </div>
 
-      <!-- User Card 2 -->
-      <div class="bg-white shadow-md rounded-lg p-4 text-center">
-        <img src="https://via.placeholder.com/150" alt="User 2" class="w-32 h-32 rounded-full mx-auto mb-4">
-        <h2 class="text-xl font-semibold">Jane Smith</h2>
-        <p class="text-gray-600">Designer</p>
-        <p class="text-gray-500">janesmith@example.com</p>
-      </div>
+        <h2 class="text-xl font-semibold mb-4">Update Profile</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="id_name" class="block text-gray-700">Name:</label>
+                {{ form.name }}
+            </div>
 
-      <!-- User Card 3 -->
-      <div class="bg-white shadow-md rounded-lg p-4 text-center">
-        <img src="https://via.placeholder.com/150" alt="User 3" class="w-32 h-32 rounded-full mx-auto mb-4">
-        <h2 class="text-xl font-semibold">Alice Johnson</h2>
-        <p class="text-gray-600">Product Manager</p>
-        <p class="text-gray-500">alicejohnson@example.com</p>
-      </div>
+            <div class="mb-4">
+                <label for="id_email" class="block text-gray-700">Email:</label>
+                {{ form.email }}
+            </div>
 
-      <!-- User Card 4 -->
-      <div class="bg-white shadow-md rounded-lg p-4 text-center">
-        <img src="https://via.placeholder.com/150" alt="User 4" class="w-32 h-32 rounded-full mx-auto mb-4">
-        <h2 class="text-xl font-semibold">Bob Brown</h2>
-        <p class="text-gray-600">QA Engineer</p>
-        <p class="text-gray-500">bobbrown@example.com</p>
-      </div>
+            <div class="mb-4">
+                <label for="id_role" class="block text-gray-700">Role:</label>
+                {{ form.role }}
+            </div>
+
+            <button type="submit" class="mt-4 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Update Profile</button>
+        </form>
     </div>
-  </main>
-  {% endblock calender %}
+</main>
+{% endblock %}
+

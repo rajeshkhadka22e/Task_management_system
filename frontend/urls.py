@@ -7,13 +7,16 @@ urlpatterns = [
     # path('due-tasks/',due_tasks, name='due_tasks'), #URL for the due_tasks
     # path('task-graph/', task_graph, name='task_graph'), #URL for the task_graph
     path('profile/', views.profile, name='profile'), 
+    path('profile_success/', views.profile_success, name='profile_success'), 
     path('calender/', views.calender, name='calender'), 
-    path('developer_personal_profile/', views.developer_personal_profile, name='developer_personal_profile'), 
+    path('developer_personal_profile/<int:id>/', views.developer_personal_profile, name='developer_personal_profile'),
     path('due_task/', views.due_task, name='due_task'), 
     path('new_task_list/', views.new_task_list, name='new_task_list'), 
     path('project_member_detail/', views.project_member_detail, name='project_member_detail'), 
     path('task_graph/', views.task_graph, name='task_graph'), 
     path('task_time/', views.task_time, name='task_time'), 
     path('profile_card/', views.profile_card, name='profile_card'), 
-    
+    path('edit_task/<int:task_id>/', views.edit_task, name='edit_task'),
+
+    path('api/events/', views.get_events, name='get_events'),
 ]

@@ -4,31 +4,24 @@
   </div>
 
   <!-- Scrollable content area -->
-  <div class="flex-grow overflow-y-auto">
+  <div class="flex-grow overflow-y-auto capitalize">
     <ul>
       <li class="mb-4">
         <a href="/" class="block py-2 px-4 bg-gray-700 rounded">Home</a>
       </li>
       <li class="mb-4">
-        <a href="{% url "new_task_list" %}" class="block py-2 px-4 hover:bg-gray-700 rounded">Project</a>
+        <a href="{% url "new_task_list" %}" class="block py-2 px-4 hover:bg-gray-700 rounded">Project detail</a>
       </li>
-      <div class="mb-2">
-        <h3 id="toggle-button" class="flex items-center justify-between px-4 py-4 hover:bg-gray-700 rounded cursor-pointer">
-          <span>Project Members</span>
-          <svg class="w-4 h-4 transition-transform duration-200 transform" id="dropdown-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-        </h3>
-        <ul id="project-members" class="hidden px-4 py-4">
-          <li class="mb-2"><a href="{% url "project_member_detail" %}" class="block py-1 px-2 hover:bg-gray-700 rounded">Project 1</a></li>
-          <li class="mb-2"><a href="{% url "project_member_detail" %}" class="block py-1 px-2 hover:bg-gray-700 rounded">Project 2</a></li>
-          <li class="mb-2"><a href="{% url "project_member_detail" %}" class="block py-1 px-2 hover:bg-gray-700 rounded">Project 3</a></li>
-          <li class="mb-2"><a href="{% url "project_member_detail" %}" class="block py-1 px-2 hover:bg-gray-700 rounded">Project 4</a></li>
-        </ul>
+      <div class="">
+        <h3 id="toggle-button" class="flex items-center justify-between px-4 py-2 hover:bg-gray-700 rounded cursor-pointer">
+         
+          <li class=""><a href="{% url "project_member_detail" %}" class="block py-1  hover:bg-gray-700 rounded">Project Members</a></li>
+
+       
       </div>
-      <li class="mb-4">
+      {% comment %} <li class="mb-4">
         <a href="{% url "task_graph" %}" class="block py-2 px-4 hover:bg-gray-700 rounded">Project Duration</a>
-      </li>
+      </li> {% endcomment %}
       <li class="mb-4">
         <a href="{% url "task_time" %}" class="block py-2 px-4 hover:bg-gray-700 rounded">Completed Project</a>
       </li>

@@ -2,57 +2,22 @@
 {% load static %}
 
 {% block hero %}
-
-        <!-- Main Content -->
-        <div class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-6">Project Name: Project X</h1> <!-- Project Name Header -->
-            <h2 class="text-3xl font-bold mb-6">Team Members</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Team Manager Card -->
-                <div class="bg-white shadow-md rounded-lg p-4">
-                    <img src="https://via.placeholder.com/150" alt="Team Manager" class="mb-4 rounded-full mx-auto">
-                    <h3 class="text-xl font-semibold text-center">Team Manager</h3>
+    <div class="flex-1 p-6">
+        <h2 class="text-3xl font-bold mb-6">Team Members</h2>
+       
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for profile in profiles %}
+            <div class="bg-white shadow-md rounded-lg p-4">
+                    <img src="{{ member.profile_image.url }}" alt="{{ member.role }}" class="mb-4 rounded-full mx-auto w-40 h-40">
+                    <h3 class="text-xl font-semibold text-center">{{ member.get_role_display }}</h3>
                     <div class="mt-2">
-                        <p class="flex mb-1"><strong class="w-48">Name:</strong> John Doe</p>
-                        <p class="flex mb-1"><strong class="w-48">Experience:</strong> 10 years</p>
-                        <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> Project A, Project B</p>
-                        <p class="flex mb-1"><strong class="w-48">Email:</strong> john.doe@example.com</p>
+                        <p class="flex mb-1"><strong class="w-48">Name:</strong> {{ profile.name }}</p>
+                        <p class="flex mb-1"><strong class="w-48">Experience:</strong> {{ member.experience }} years</p>
+                        <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> {{ member.working_projects }}</p>
+                        <p class="flex mb-1"><strong class="w-48">Email:</strong> {{ member.email }}</p>
                     </div>
                 </div>
-
-                <!-- Developer Cards -->
-                <div class="bg-white shadow-md rounded-lg p-4">
-                    <img src="https://via.placeholder.com/150" alt="Developer" class="mb-4 rounded-full mx-auto">
-                    <h3 class="text-xl font-semibold text-center">Developer</h3>
-                    <div class="mt-2">
-                        <p class="flex mb-1"><strong class="w-48">Name:</strong> Alice Smith</p>
-                        <p class="flex mb-1"><strong class="w-48">Experience:</strong> 5 years</p>
-                        <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> Project A</p>
-                        <p class="flex mb-1"><strong class="w-48">Email:</strong> alice.smith@example.com</p>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-md rounded-lg p-4">
-                    <img src="https://via.placeholder.com/150" alt="Developer" class="mb-4 rounded-full mx-auto">
-                    <h3 class="text-xl font-semibold text-center">Developer</h3>
-                    <div class="mt-2">
-                        <p class="flex mb-1"><strong class="w-48">Name:</strong> Bob Johnson</p>
-                        <p class="flex mb-1"><strong class="w-48">Experience:</strong> 4 years</p>
-                        <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> Project B</p>
-                        <p class="flex mb-1"><strong class="w-48">Email:</strong> bob.johnson@example.com</p>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-md rounded-lg p-4">
-                    <img src="https://via.placeholder.com/150" alt="QA Engineer" class="mb-4 rounded-full mx-auto">
-                    <h3 class="text-xl font-semibold text-center">QA Engineer</h3>
-                    <div class="mt-2">
-                        <p class="flex mb-1"><strong class="w-48">Name:</strong> Dana White</p>
-                        <p class="flex mb-1"><strong class="w-48">Experience:</strong> 6 years</p>
-                        <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> Project A, Project B</p>
-                        <p class="flex mb-1"><strong class="w-48">Email:</strong> dana.white@example.com</p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
+    </div>
 {% endblock hero %}

@@ -1,66 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
-{% block calender %}
+{% block hero %}
 
-  <!-- Main content -->
-  <main class="flex-1 p-6 bg-gray-100">
-    <h1 class="text-3xl font-bold mb-6">New Task List</h1>
-
-    <div class="bg-white shadow-md rounded p-6 mb-6">
-      <form onsubmit="addTask(event)">
-        <div class="mb-4">
-          <label for="taskName" class="block text-gray-700">Task Name:</label>
-          <input type="text" id="taskName" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required>
+    <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded mt-10">
+        {% for Projects in Projects %}
+        <h1 class="text-2xl font-bold mb-6 capitalize"> <strong>Projects Name :</strong> {{ Projects.name }}</h1>
+        
+        <!-- Check if the project description already exists -->
+     
+        
+        <!-- Display the project details -->
+        <div class="mb-6">
+            <h2 class="text-2xl font-semibold ">Project Details</h2>
+            <p><strong>Duration:</strong> {{ Projects.duration }} weeks</p>
+            <p><strong>Description:</strong> {{ Projects.description }}</p>
         </div>
+        
+        <!-- Edit button -->
 
-        <div class="mb-4">
-          <label for="taskDuration" class="block text-gray-700">Task Duration:</label>
-          <input type="text" id="taskDuration" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required>
-        </div>
+        {% endfor %}
+        
 
-        <div class="mb-4">
-          <label for="budget" class="block text-gray-700">Budget:</label>
-          <input type="number" id="budget" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required>
-        </div>
+        
 
-        <div class="mb-4">
-          <label for="projectDescription" class="block text-gray-700">Full Project Description:</label>
-          <textarea id="projectDescription" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required></textarea>
-        </div>
-
-        <a href="{% url "due_task" %}" class="mt-4 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 inline-block text-center">Add Task</a>
-      </form>
-    </div>
-
-    <div id="task-list"></div> <!-- Container for displaying tasks -->
-
-    <div class="bg-white shadow-md rounded p-6">
-      <h2 class="text-xl font-semibold mb-4">Add Team Member</h2>
-
-      <!-- Dropdown button -->
-      <button onclick="toggleDropdown()" class="bg-blue-600 text-white py-2 px-4 rounded mb-4">
-        Add Team Member
-      </button>
-
-      <!-- Dropdown menu -->
-      <div id="dropdown-menu" class="hidden bg-white shadow-lg rounded mt-2 p-4">
-        <div class="mb-4">
-          <label for="team-member-name" class="block text-gray-700">Name:</label>
-          <input type="text" id="team-member-name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required>
-        </div>
-
-        <div class="mb-4">
-          <label for="team-member-email" class="block text-gray-700">Email:</label>
-          <input type="email" id="team-member-email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" required>
-        </div>
-
-        <div class="mb-4">
-          <label for="team-member-experience" class="block text-gray-700">Experience:</label>
-          <input type="text" id="team-member-experience" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" placeholder="Years of experience" required>
-        </div>
-
-        <a href="{% url "project_member_detail" %}" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Add Member</a>
-      </div>
-    </div>
-  </main>
-  {% endblock calender %}
+{% endblock  %}

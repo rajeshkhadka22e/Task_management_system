@@ -1,6 +1,8 @@
-
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
+from .manager import CustomUserManager
+
 
 class TaskList(models.Model):
     name = models.CharField(max_length=255)
@@ -31,3 +33,80 @@ class Task(models.Model):
         return self.title
 
 
+class UserProfile(models.Model):
+    name = models.CharField(max_length=255)
+    experienced = models.CharField(max_length=10,default=1)
+    email = models.EmailField(unique=True)
+    role_choices = [
+        ('Developer', 'Developer'),
+        ('Manager', 'Manager'),
+        ('Designer', 'Designer'),
+    ]
+    role = models.CharField(max_length=50, choices=role_choices, default='Developer')
+    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class TeamMember(models.Model):
+    ROLE_CHOICES = [
+        ('manager', 'Team Manager'),
+        ('developer', 'Developer'),
+        ('qa', 'QA Engineer'),
+    ]
+    
+    name = models.CharField(max_length=100)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    experience = models.PositiveIntegerField(help_text="Years of experience")
+    working_projects = models.CharField(max_length=200)
+    email = models.EmailField(unique=True)
+    profile_image = models.ImageField(upload_to='profiles/', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+    
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=255)
+    duration = models.PositiveIntegerField()
+    budget = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+    
+
+
+
+
+######user model######
+class User(AbstractUser):
+    experience = models.IntegerField(default=0)  # Experience in years
+    role = models.CharField(max_length=50)  # Role of the user
+    email = models.EmailField(unique=True)
+    profile_images= models.ImageField(upload_to='profiles/', blank=True, null=True)
+    
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
+
+    def __str__(self):
+        return self.username
+    
+    from django.db import models
+
+
+
+
+
+###########calender event dynamic########
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)  # Optional end date
+
+    def __str__(self):
+        return self.title
