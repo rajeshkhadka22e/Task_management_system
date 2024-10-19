@@ -13,8 +13,8 @@ urlpatterns = [
     path('due_task/', views.due_task, name='due_task'), 
     path('new_task_list/', views.new_task_list, name='new_task_list'), 
 
-    path('add-task/', views.add_task, name='add_task'),  # URL for the task form submission
-    path('add-member/', views.add_member, name='add_member'), 
+    path('add-task/', views.due_task, name='add_task'),  # URL for the task form submission
+    # path('add-member/', views.add_member, name='add_member'), 
     
     path('project_member_detail/', views.project_member_detail, name='project_member_detail'), 
     path('task_graph/', views.task_graph, name='task_graph'), 

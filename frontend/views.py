@@ -22,6 +22,9 @@ from .forms import TaskForm,ProjectForm
 
 def home(request):
     task_lists = TaskList.objects.all()
+    profile_image = User.objects.all()
+
+
     total_tasks = Task.objects.count()
     ongoing_tasks = Task.objects.filter(status='ongoing').count()
     completed_tasks = Task.objects.filter(status='completed').count()
@@ -37,6 +40,7 @@ def home(request):
     upcoming_tasks = Task.objects.filter(due_date__gte=timezone.now().date()).order_by('due_date')
 
     context = {
+        'profile_image':profile_image,
         'task_lists': task_lists,
         'total_tasks': total_tasks,
         'ongoing_tasks': ongoing_tasks,
@@ -44,6 +48,7 @@ def home(request):
         'overdue_tasks': overdue_tasks,
         'progress_percentage': progress_percentage,
         'upcoming_tasks': upcoming_tasks,
+
     }
 
     return render(request, 'index.html', context)
