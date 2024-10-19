@@ -147,7 +147,7 @@ def task_time(request):
 
 
 # #########################################
-##############code form chatjpt ##########
+##############code from chatjpt ##########
 ##########################################
 
 
@@ -186,3 +186,8 @@ def get_events(request):
         })
 
     return JsonResponse(event_list, safe=False)
+
+
+# def add_task(request):
+#     # Add your logic here
+#     return render(request, 'due_task.html')
