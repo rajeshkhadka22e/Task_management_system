@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('frontend.urls')),
     path('', include('formapp.urls')),
+    path('auth/', include('authentication.urls'))
 
 ]
 # Serve static and media files during development
