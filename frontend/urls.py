@@ -7,9 +7,7 @@ from django.contrib.auth.decorators import login_required
 # from .views import due_tasks,task_graph  # Import your views
 
 urlpatterns = [
-
-   
-    path('home/',login_required(views.home), name='home'),# URL for the home view
+    path('',views.home, name='home'),# URL for the home view
     # path('due-tasks/',views.due_tasks, name='due_tasks'), #URL for the due_tasks
     path('task-graph/', views.task_graph, name='task_graph'), #URL for the task_graph
     path('profile/', views.profile, name='profile'), 

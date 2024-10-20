@@ -1,7 +1,7 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block title %}Login{% endblock title %}
-{% block content %}
+{% block hero %}
 
   
     <!-- main div -->
@@ -25,7 +25,8 @@
 
         <h2>Login</h2>
 
-        <form action="{% url 'login' %}" method="post">
+        <form  method="post">
+          {% comment %} action="{% url 'login' %}" {% endcomment %}
           {% csrf_token %}
             <div class="input-box">
               <input type="email" name="email" required />
@@ -60,4 +61,4 @@
     </div>
   
 
-    {% endblock content %}
+    {% endblock  %}
