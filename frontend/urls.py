@@ -1,11 +1,13 @@
 from django.urls import path
-from . import views
+from . import views 
+
+
 # from .views import due_tasks,task_graph  # Import your views
 
 urlpatterns = [
     path('', views.home, name='home'),# URL for the home view
-    # path('due-tasks/',due_tasks, name='due_tasks'), #URL for the due_tasks
-    # path('task-graph/', task_graph, name='task_graph'), #URL for the task_graph
+    # path('due-tasks/',views.due_tasks, name='due_tasks'), #URL for the due_tasks
+    path('task-graph/', views.task_graph, name='task_graph'), #URL for the task_graph
     path('profile/', views.profile, name='profile'), 
     path('profile_success/', views.profile_success, name='profile_success'), 
     path('calender/', views.calender, name='calender'), 
@@ -23,4 +25,5 @@ urlpatterns = [
     path('edit_task/<int:task_id>/', views.edit_task, name='edit_task'),
 
     path('api/events/', views.get_events, name='get_events'),
+
 ]

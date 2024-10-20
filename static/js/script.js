@@ -1,3 +1,5 @@
+
+
 const toggleButton = document.getElementById('toggle-button');
 const projectMembers = document.getElementById('project-members');
 
@@ -214,3 +216,6 @@ function updateTime() {
           maintainAspectRatio: false, // Allow the chart to resize
         }
       });
+
+
+      

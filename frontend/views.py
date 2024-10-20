@@ -6,7 +6,7 @@ from .forms import UserProfileForm
 from django.contrib import messages
 from .forms import EditTaskForm
 from .forms import TaskForm,ProjectForm
-
+from datetime import datetime
 # Create your views here.
 # def home(request):
 #     return render(request,'index.html')
@@ -22,36 +22,83 @@ from .forms import TaskForm,ProjectForm
 
 def home(request):
     task_lists = TaskList.objects.all()
-    profile_image = User.objects.all()
+    UserProfiles = User.objects.all()
+    current_time = datetime.now()
 
-
-    total_tasks = Task.objects.count()
-    ongoing_tasks = Task.objects.filter(status='ongoing').count()
-    completed_tasks = Task.objects.filter(status='completed').count()
-    overdue_tasks = Task.objects.filter(status='overdue').count()
-
-    # Calculate percentage of completed tasks
-    if total_tasks > 0:
-        progress_percentage = (completed_tasks / total_tasks) * 100
+    # Get the current hour using 24-hour format
+    current_hour = current_time.hour
+    
+    # Determine greeting based on the time of day
+    if current_hour < 12:
+        greeting = "Good Morning"
+    elif 12 <= current_hour < 17:
+        greeting = "Good Afternoon"
     else:
-        progress_percentage = 0
-
-    # Get tasks that are upcoming (today or in the future)
-    upcoming_tasks = Task.objects.filter(due_date__gte=timezone.now().date()).order_by('due_date')
+        greeting = "Good Evening"
+    
+    # Format the current time to 12-hour clock with AM/PM
+    formatted_time = current_time.strftime("%I:%M:%S %p")  # Example: 02:40:04 PM
 
     context = {
-        'profile_image':profile_image,
-        'task_lists': task_lists,
-        'total_tasks': total_tasks,
-        'ongoing_tasks': ongoing_tasks,
-        'completed_tasks': completed_tasks,
-        'overdue_tasks': overdue_tasks,
-        'progress_percentage': progress_percentage,
-        'upcoming_tasks': upcoming_tasks,
-
+        "profiles": UserProfiles,
+        "current_date": current_time,
+        "greeting": greeting,
+        "formatted_time": formatted_time  # Pass the formatted time to the template
     }
 
     return render(request, 'index.html', context)
+# def home(request):
+#     task_lists = TaskList.objects.all()
+#     UserProfiles = User.objects.all()
+#     current_time = datetime.now()
+
+#     # Determine the greeting based on the current hour
+#     if current_time.hour < 12:
+#         greeting = "Good Morning"
+#     elif 12 <= current_time.hour < 18:
+#         greeting = "Good Afternoon"
+#     else:
+#         greeting = "Good Evening"
+
+#     context = {
+#         "profiles": UserProfiles,
+#         "current_date": current_time,
+#         "greeting": greeting  # Pass the greeting to the template
+#     }
+
+#     return render(request, 'index.html', context)
+
+    # total_tasks = Task.objects.count()
+    # ongoing_tasks = Task.objects.filter(status='ongoing').count()
+    # completed_tasks = Task.objects.filter(status='completed').count()
+    # overdue_tasks = Task.objects.filter(status='overdue').count()
+
+    # # Calculate percentage of completed tasks
+    # if total_tasks > 0:
+    #     progress_percentage = (completed_tasks / total_tasks) * 100
+    # else:
+    #     progress_percentage = 0
+
+    # # Get tasks that are upcoming (today or in the future)
+    # upcoming_tasks = Task.objects.filter(due_date__gte=timezone.now().date()).order_by('due_date')
+
+    # context = {
+    #     "profiles":UserProfiles,
+    #     'task_lists': task_lists,
+    #     'total_tasks': total_tasks,
+    #     'ongoing_tasks': ongoing_tasks,
+    #     'completed_tasks': completed_tasks,
+    #     'overdue_tasks': overdue_tasks,
+    #     'progress_percentage': progress_percentage,
+    #     'upcoming_tasks': upcoming_tasks,
+
+    # }
+    # context = {
+    #     "profiles":UserProfiles
+    #     "current_date":current_date
+    # }
+
+    # return render(request, 'index.html', context)
 
 # def due_tasks(request):
 #     # Query the database to get tasks that are due
@@ -152,7 +199,7 @@ def task_time(request):
 
 
 # #########################################
-##############code form chatjpt ##########
+##############code from chatjpt ##########
 ##########################################
 
 
@@ -191,3 +238,8 @@ def get_events(request):
         })
 
     return JsonResponse(event_list, safe=False)
+
+
+# def add_task(request):
+#     # Add your logic here
+#     return render(request, 'due_task.html')

@@ -2,25 +2,23 @@
 {% load static %}
 {% block hero %}
 
-    <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded mt-10">
+<div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded mt-10">
+    <h1 class="text-3xl font-bold mb-4 capitalize text-blue-500">Projects</h1>
+    <!-- Create a horizontal scrollable container for the project cards -->
+    <div class="flex gap-10 overflow-x-auto justify-center">
         {% for Projects in Projects %}
-        <h1 class="text-2xl font-bold mb-6 capitalize"> <strong>Projects Name :</strong> {{ Projects.name }}</h1>
-        
-        <!-- Check if the project description already exists -->
-     
-        
-        <!-- Display the project details -->
-        <div class="mb-6">
-            <h2 class="text-2xl font-semibold ">Project Details</h2>
-            <p><strong>Duration:</strong> {{ Projects.duration }} weeks</p>
-            <p><strong>Description:</strong> {{ Projects.description }}</p>
+        <div class="w-2/5 min-w-[300px] bg-gray-100 p-4 rounded-lg shadow-md overflow-y-auto" style="max-height: 500px;">
+            <h2 class="text-xl font-bold capitalize text-green-500">
+                <strong>Project Name:</strong> {{ Projects.name }}
+            </h2>
+            <div class="mt-2">
+                <h3 class="text-lg font-semibold">Project Details</h3>
+                <p><strong>Duration:</strong> {{ Projects.duration }} weeks</p>
+                <p><strong>Description:</strong> {{ Projects.description }}</p>
+            </div>
         </div>
-        
-        <!-- Edit button -->
-
         {% endfor %}
-        
+    </div>
+</div>
 
-        
-
-{% endblock  %}
+{% endblock %}
