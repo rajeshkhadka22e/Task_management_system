@@ -8,15 +8,21 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {% for profile in profiles %}
             <div class="bg-white shadow-md rounded-lg p-4">
-                    <img src="{{ member.profile_image.url }}" alt="{{ member.role }}" class="mb-4 rounded-full mx-auto w-40 h-40">
-                    <h3 class="text-xl font-semibold text-center">{{ member.get_role_display }}</h3>
-                    <div class="mt-2">
-                        <p class="flex mb-1"><strong class="w-48">Name:</strong> {{ profile.name }}</p>
-                        <p class="flex mb-1"><strong class="w-48">Experience:</strong> {{ member.experience }} years</p>
-                        <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> {{ member.working_projects }}</p>
-                        <p class="flex mb-1"><strong class="w-48">Email:</strong> {{ member.email }}</p>
+                {% if profile.profile_images %}
+                    <img src="{{ profile.profile_images.url }}" alt="{{ profile.role }}" class="mb-4 rounded-full mx-auto w-40 h-40">
+                {% else %}
+                    <div class="mb-4 rounded-full mx-auto w-40 h-40 bg-gray-300 flex items-center justify-center">
+                        <span>Profile Picture Placeholder</span>
                     </div>
+                {% endif %}
+                <h3 class="text-xl font-semibold text-center">{{ profile.role }}</h3>
+                <div class="mt-2">
+                    <p class="flex mb-1"><strong class="w-48">Name:</strong> {{ profile.get_full_name }}</p>
+                    <p class="flex mb-1"><strong class="w-48">Experience:</strong> {{ profile.experience }} years</p>
+                    <p class="flex mb-1"><strong class="w-48">Working Projects:</strong> {{ profile.working_projects }}</p>
+                    <p class="flex mb-1"><strong class="w-48">Email:</strong> {{ profile.email }}</p>
                 </div>
+            </div>
             {% endfor %}
         </div>
     </div>
