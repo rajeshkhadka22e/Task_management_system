@@ -13,7 +13,7 @@
     </div>
     <div class="flex items-center space-x-4">
       <span id="time" class="text-black text-xl">00:00:00 AM</span>
-      <div class="w-12 h-12 rounded-full bg-gray-300"></div> <!-- Profile Picture Placeholder -->
+      <div class="w-12 h-12 rounded-full bg-gray-300">{{User.profile_images}}</div> <!-- Profile Picture Placeholder -->
     </div>
   </div>
 
@@ -51,13 +51,15 @@
     <div class="w-full p-6 bg-white shadow-md rounded">
       <h3 class="text-lg font-bold p-3">Upcoming Tasks</h3>
       <div class="flex gap-4">
-              {% for task in upcoming_tasks %}
+              {% comment %} {% for task in upcoming_tasks %} {% endcomment %}
               <div class="bg-white shadow-md rounded-lg w-full max-w-md px-3 py-4">
                 <h4 class="text-lg font-semibold mb-4 flex justify-center underline">{{ task.title }}</h4>
                 <p class="flex mb-2"><strong>Description:</strong> {{ task.description }}</p>
                 <p class="flex mb-2"><strong>Assigned To:</strong> John Doe</p>
                 <p class="flex mb-2"><strong>Due Date:</strong> {{ task.due_date }}</p>
                 <p class="flex mb-2"><strong>Status:</strong> {{ task.get_status_display }}</p>
+
+            
                 <p class="flex mb-2"><strong>Priority:</strong> High</p>
 
                 <div class="mt-4 flex justify-center">
@@ -68,9 +70,9 @@
                   <a href="{% url "project_member_detail" %}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 ml-2">Project Member</a>
                 </div>
               </div>
-              {% empty %}
+              {% comment %} {% empty %}
               <p>No upcoming tasks found.</p>
-              {% endfor %}
+              {% endfor %} {% endcomment %}
       </div>
     </div>
   </div>

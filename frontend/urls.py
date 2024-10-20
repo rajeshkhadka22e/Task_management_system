@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views 
+from .views import team_members_view
+
 # from .views import due_tasks,task_graph  # Import your views
 
 urlpatterns = [
@@ -13,7 +15,7 @@ urlpatterns = [
     path('due_task/', views.due_task, name='due_task'), 
     path('new_task_list/', views.new_task_list, name='new_task_list'), 
 
-    # path('add-task/', views.add_task, name='add_task'),  # URL for the task form submission
+    path('add-task/', views.due_task, name='add_task'),  # URL for the task form submission
     # path('add-member/', views.add_member, name='add_member'), 
     
     path('project_member_detail/', views.project_member_detail, name='project_member_detail'), 
@@ -23,4 +25,5 @@ urlpatterns = [
     path('edit_task/<int:task_id>/', views.edit_task, name='edit_task'),
 
     path('api/events/', views.get_events, name='get_events'),
+
 ]
