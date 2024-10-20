@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     # external app
     'frontend',
     'formapp',
-    'authentication'
+    'authentication',
+     
 ]
 
 MIDDLEWARE = [

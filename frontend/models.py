@@ -23,7 +23,7 @@ class Task(models.Model):
 
 #    SAM
 
-    task_duration = models.CharField(max_length=20, blank=True)  # Duration of the task (changed from 'duration')
+    # task_duration = models.CharField(max_length=20, blank=True)  # Duration of the task (changed from 'duration')
     budget_amount = models.DecimalField(max_digits=10, decimal_places=2, default='0.00')  # Budget amount (changed from 'budget')
    
 
@@ -31,6 +31,8 @@ class Task(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='ongoing')
     due_date = models.DateField(default=timezone.now)
     task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE, related_name='tasks')
+    task_duration = models.IntegerField() 
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -61,9 +63,9 @@ class UserProfile(models.Model):
 
 class TeamMember(models.Model):
     ROLE_CHOICES = [
-        ('manager', 'Team Manager'),
-        ('developer', 'Developer'),
-        ('qa', 'QA Engineer'),
+        ('Manager', 'Team Manager'),
+        ('Developer', 'Developer'),
+        ('Qa', 'QA Engineer'),
     ]
     
     name = models.CharField(max_length=100)
