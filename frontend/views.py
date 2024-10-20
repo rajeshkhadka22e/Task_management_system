@@ -47,6 +47,7 @@ def home(request):
     }
 
     return render(request, 'index.html', context)
+
 # def home(request):
 #     task_lists = TaskList.objects.all()
 #     UserProfiles = User.objects.all()
