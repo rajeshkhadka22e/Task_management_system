@@ -25,8 +25,72 @@
     </div>
   </div>
 
+  {% comment %} new code  {% endcomment %}
+<!-- Task Metrics -->
+<div class="grid grid-cols-4 gap-4 mb-6">
+  <div class="p-6 bg-white shadow-md rounded">
+      <h3 class="text-lg font-bold">Total Tasks</h3>
+      <p class="text-2xl">{{ total_tasks }}</p> <!-- Dynamic Total Tasks -->
+      <p class="text-green-500">{{ progress_percentage|floatformat:1 }}% <span>↑</span></p> <!-- Dynamic Progress Percentage -->
+  </div>
+  <div class="p-6 bg-white shadow-md rounded">
+      <h3 class="text-lg font-bold">Ongoing Tasks</h3>
+      <p class="text-2xl">{{ ongoing_tasks }}</p> <!-- Dynamic Ongoing Tasks -->
+  </div>
+  <div class="p-6 bg-white shadow-md rounded">
+      <h3 class="text-lg font-bold">Completed Tasks</h3>
+      <p class="text-2xl">{{ completed_tasks }}</p> <!-- Dynamic Completed Tasks -->
+  </div>
+  <div class="p-6 bg-white shadow-md rounded">
+      <h3 class="text-lg font-bold">Overdue Tasks</h3>
+      <p class="text-2xl">{{ overdue_tasks }}</p> <!-- Dynamic Overdue Tasks -->
+  </div>
+</div>
+
+<!-- Upcoming Tasks & Calendar -->
+<div class="flex justify-between">
+  <div class="w-full p-6 bg-white shadow-md rounded">
+      <h3 class="text-lg font-bold p-3">Upcoming Tasks</h3>
+      <div class="flex gap-4">
+          {% comment %} {% for task in upcoming_tasks %} {% endcomment %}
+          <div class="bg-white shadow-md rounded-lg w-full max-w-md px-3 py-4">
+              <h4 class="text-lg font-semibold mb-4 flex justify-center underline">{{ task.title }}</h4>
+              <p class="flex mb-2"><strong>Description:</strong> {{ task.description }}</p>
+              <p class="flex mb-2"><strong>Assigned To:</strong> {{ task.assigned_to.username }}</p> <!-- Dynamically show assigned user -->
+              <p class="flex mb-2"><strong>Due Date:</strong> {{ task.due_date }}</p>
+              <p class="flex mb-2"><strong>Status:</strong> {{ task.get_status_display }}</p>
+              <p class="flex mb-2"><strong>Priority:</strong> {{ task.priority }}</p> <!-- Assuming task has a priority field -->
+
+              <div class="mt-4 flex justify-center">
+                  <a href="{% url "project_member_detail" %}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 ml-2">Project Member</a>
+              </div>
+          </div>
+          {% comment %} {% empty %} {% endcomment %}
+          {% comment %} <p>No upcoming tasks found.</p>
+          {% endfor %} {% endcomment %}
+      </div>
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- Main content area -->
+<script src="{% static 'js/script.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- Task Metrics -->
-  <div class="grid grid-cols-4 gap-4 mb-6">
+  {% comment %} <div class="grid grid-cols-4 gap-4 mb-6">
     <div class="p-6 bg-white shadow-md rounded">
       <h3 class="text-lg font-bold">Total Tasks</h3>
       <p class="text-2xl">32</p>
@@ -44,43 +108,39 @@
       <h3 class="text-lg font-bold">Overdue Tasks</h3>
       <p class="text-2xl">4</p>
     </div>
-  </div>
+  </div> {% endcomment %}
 
   <!-- Upcoming Tasks & Calendar -->
-  <div class="flex justify-between">
+  {% comment %} <div class="flex justify-between">
     <div class="w-full p-6 bg-white shadow-md rounded">
       <h3 class="text-lg font-bold p-3">Upcoming Tasks</h3>
       <div class="flex gap-4">
               {% comment %} {% for task in upcoming_tasks %} {% endcomment %}
-              <div class="bg-white shadow-md rounded-lg w-full max-w-md px-3 py-4">
+              {% comment %} <div class="bg-white shadow-md rounded-lg w-full max-w-md px-3 py-4">
                 <h4 class="text-lg font-semibold mb-4 flex justify-center underline">{{ task.title }}</h4>
                 <p class="flex mb-2"><strong>Description:</strong> {{ task.description }}</p>
                 <p class="flex mb-2"><strong>Assigned To:</strong> John Doe</p>
                 <p class="flex mb-2"><strong>Due Date:</strong> {{ task.due_date }}</p>
-                <p class="flex mb-2"><strong>Status:</strong> {{ task.get_status_display }}</p>
+                <p class="flex mb-2"><strong>Status:</strong> {{ task.get_status_display }}</p> {% endcomment %}
 
-            
-                <p class="flex mb-2"><strong>Priority:</strong> High</p>
+              
+                {% comment %} <p class="flex mb-2"><strong>Priority:</strong> High</p>
 
                 <div class="mt-4 flex justify-center">
-                  {% comment %} <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    <a href="{% url 'edit_task' task.id %}">Edit Task</a>
-                  </button>
-                    <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2">Delete Task</button> {% endcomment %}
                   <a href="{% url "project_member_detail" %}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 ml-2">Project Member</a>
                 </div>
               </div>
-              {% comment %} {% empty %}
-              <p>No upcoming tasks found.</p>
-              {% endfor %} {% endcomment %}
-      </div>
+               {% empty %} {% endcomment %}
+              {% comment %} <p>No upcoming tasks found.</p> {% endcomment %}
+              {% comment %} {% endfor %}  {% endcomment %}
+      {% comment %} </div>
     </div>
-  </div>
+   </div> 
 
-</div>
+</div> {% endcomment %}
 </div>
   <!-- Main content area -->
-
+{% comment %} 
   <script src="{% static 'js/script.js' %}"></script>
-  {% endblock  %}
+  {% endblock  %} {% endcomment %}
  

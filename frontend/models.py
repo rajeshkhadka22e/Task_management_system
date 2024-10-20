@@ -23,9 +23,11 @@ class Task(models.Model):
 
 #    SAM
 
-    task_duration = models.CharField(max_length=20, default='0')  # Duration of the task (changed from 'duration')
+    task_duration = models.CharField(max_length=20, blank=True)  # Duration of the task (changed from 'duration')
     budget_amount = models.DecimalField(max_digits=10, decimal_places=2, default='0.00')  # Budget amount (changed from 'budget')
    
+
+    role = models.CharField(max_length=100, default='Member')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='ongoing')
     due_date = models.DateField(default=timezone.now)
     task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE, related_name='tasks')
@@ -33,22 +35,13 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def is_overdue(self):
-        return self.due_date < timezone.now().date() and self.status != 'completed'
+        return self.due_date < timezone.now().date() and self.status!= 'completed'
 
     def __str__(self):
         return self.title
 
-# frontend/models.py
 
 
-
-# class TeamMember(models.Model):
-#     name = models.CharField(max_length=100)
-#     email = models.EmailField(unique=True)
-#     experience = models.IntegerField()
-
-#     def __str__(self):
-#         return self.name
 
 class UserProfile(models.Model):
     name = models.CharField(max_length=255)
@@ -74,9 +67,9 @@ class TeamMember(models.Model):
     ]
     
     name = models.CharField(max_length=100)
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    role = models.CharField(max_length=20, default='Developer',choices=ROLE_CHOICES)
     experience = models.PositiveIntegerField(help_text="Years of experience")
-    working_projects = models.CharField(max_length=200)
+    working_projects = models.CharField(max_length=200,default='null')
     email = models.EmailField(unique=True)
     profile_image = models.ImageField(upload_to='profiles/', blank=True, null=True)
 
