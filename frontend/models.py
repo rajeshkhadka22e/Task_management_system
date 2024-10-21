@@ -114,8 +114,7 @@ class User(AbstractUser):
     
     def save(self, *args, **kwargs):
         if not self.username:
-            # Generate a username based on email or some other logic
-            self.username = slugify(self.email.split('@')[0])  # Generates based on email prefix
+            self.username = slugify(self.email.split('@')[0])
         super().save(*args, **kwargs)
 
     

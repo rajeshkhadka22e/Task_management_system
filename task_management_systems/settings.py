@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -143,3 +144,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'frontend.User'
 LOGIN_URL = 'login' 
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Pegasus",
+    "site_header": "Task Management System",
+    "site_brand": "Task Management System",
+    "site_logo_classes": "img-circle",
+    "site_icon": None,
+    "welcome_sign": "Welcome to the library",
+
+    # Copyright on the footer
+    "copyright": "Prinjal Tech PVT LTD",
+}
