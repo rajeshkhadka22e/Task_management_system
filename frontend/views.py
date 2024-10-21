@@ -158,14 +158,11 @@ def calender(request):
 
 
 def developer_personal_profile(request, id):
-    # profile = get_object_or_404(UserProfile, id=id)
-    # rest of your view logic
-
-    # Fetch the user profile or return 404 if not found
-    # profile = get_object_or_404(UserProfile, id=id)
-    
-    # Render the profile page
-    return render(request, 'developer_personal_profile.html')
+    UserProfiles = User.objects.all()
+    context = {
+        "profiles": UserProfiles
+        }
+    return render(request, 'developer_personal_profile.html',context)
 
 
 def due_task(request):
