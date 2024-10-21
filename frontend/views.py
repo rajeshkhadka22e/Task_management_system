@@ -1,4 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib.auth.decorators import login_required
+
 # from django.contrib.auth import authenticate, login, logout
 # from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseBadRequest,HttpResponse,JsonResponse
@@ -116,6 +118,7 @@ def due_tasks(request):
     #     return render(request, 'task_graph.html')
 
 
+@login_required(login_url='/auth/login/')  # Redirects to login page if not authenticated
 def profile(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=request.user)
@@ -127,7 +130,7 @@ def profile(request):
             messages.error(request, 'Please correct the error below.')
     else:
         # For a GET request, populate the form with the user's profile data
-        form = UserProfileForm(instance=request.user)  # Prepopulate form with existing profile data
+        form = UserProfileForm(instance=request.user)
 
     return render(request, 'profile.html', {
         'form': form
