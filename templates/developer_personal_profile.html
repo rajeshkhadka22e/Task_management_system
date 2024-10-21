@@ -22,7 +22,7 @@
                     {{ request.user.get_full_name }} is an experienced {{ request.user.role }} with a proven track record in leading projects to success.
                 </p>
 
-                <div class="mt-8 flex">
+                {% comment %} <div class="mt-8 flex">
                     <div class="mr-4">
                         <p><strong>Name:</strong></p>
                         <p><strong>experienced:</strong></p>
@@ -34,7 +34,33 @@
                         <p class="flex justify-start mb-1">{{ request.user.experience }}</p>
                         <p class="flex justify-start mb-1">{{ request.user.email }}</p>
                         <p class="flex justify-start mb-1">{{ request.user.role }}</p>
+                    </div> {% endcomment %}
+
+{% comment %} Sam's editing {% endcomment %}
+
+                    {% if request.user.is_authenticated %}
+                    <div class="mt-8 flex flex-col space-y-2">  <div class="flex flex-row items-center space-x-4">  <p class="font-bold">Name:</p>
+                        <p>{{ request.user.get_full_name }}</p>
+                      </div>
+                      <div class="flex flex-row items-center space-x-4">
+                        <p class="font-bold">Email:</p>
+                        <p>{{ request.user.email }}</p>
+                      </div>
+                      <div class="flex flex-row items-center space-x-4">
+                        <p class="font-bold">Role:</p>
+                        <p>
+                          {% if request.user.role %}
+                            {{ request.user.role }}
+                          {% else %}
+                            N/A
+                          {% endif %}
+                        </p>
+                      </div>
                     </div>
+                  {% else %}
+                    <p>Please log in to view your profile information.</p>
+                  {% endif %}
+{% comment %} ends here Sam's {% endcomment %}
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 # from django.contrib.auth import authenticate, login, logout
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseBadRequest,HttpResponse,JsonResponse
 from django.utils import timezone
 from .models import Task, TaskList,UserProfile,TeamMember,Project,User,Event
@@ -114,7 +114,6 @@ def due_tasks(request):
     # def task_graph(request):
     #     return render(request, 'task_graph.html')
 
-
 def profile(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=request.user)
@@ -183,12 +182,16 @@ def new_task_list(request):
 def project_member_detail(request):
     # team_members = TeamMember.objects.all()
 # {'team_members': team_members}
-    UserProfiles = User.objects.all()
-    print(UserProfiles)
-    context = {
-        "profiles":UserProfiles
-    }
-    return render(request, 'project_member_detail.html', context)
+#  SAm
+ team_members = TeamMember.objects.all()
+ return render(request, 'project_member_detail.html', {'team_members': team_members})
+#  SAm
+# UserProfiles = User.objects.all()
+#     print(UserProfiles)
+#     context = {
+#         "profiles":UserProfiles
+#     }
+#     return render(request, 'project_member_detail.html', context)
 
 def task_graph(request):
     return render(request, 'task_graph.html')

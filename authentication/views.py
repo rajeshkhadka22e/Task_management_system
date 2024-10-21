@@ -57,4 +57,8 @@ def LoginPage(request):
 
     return render(request, 'login.html')
 
+def LogoutPage(request):
+    logout(request)  # Logs out the user
+    return redirect('login')
+
 # Optionally, you can apply login_required to any other view as needed
