@@ -16,8 +16,8 @@
       <div class="flex items-center space-x-4">
         <span id="time" class="text-black text-xl">{{ formatted_time }}</span>
         <div class="w-12 h-12 rounded-full bg-gray-300">
-          {% if profile.profile_images %}
-            <img src="{{ profile.profile_images.url }}" alt="Profile Picture" class="w-full h-full object-cover rounded-full">
+          {% if request.user.profile_images %}
+            <img src="{{ request.user.profile_images.url }}" alt="Profile Picture" class="w-full h-full object-cover rounded-full">
           {% else %}
             <span>Profile Picture Placeholder</span>
           {% endif %}

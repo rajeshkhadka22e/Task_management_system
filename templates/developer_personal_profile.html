@@ -9,8 +9,8 @@
         <!-- Profile Card -->
         <div class="bg-white shadow-md rounded-lg p-4 max-w-sm w-full">
             
-            {% if profile.profile_images %}
-            <img src="{{ profile.profile_images.url }}" alt="{{ profile.name }}" class="mb-4 rounded-full mx-auto w-32 h-32">
+            {% if request.user.profile_images %}
+            <img src="{{ request.user.profile_images.url }}" alt="{{ request.user.first_name }}" class="mb-4 rounded-full mx-auto w-32 h-32">
             {% else %}
                 <img src="https://via.placeholder.com/150" alt="No Image Available" class="mb-4 rounded-full mx-auto w-32 h-32">
             {% endif %}

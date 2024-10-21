@@ -120,6 +120,9 @@ def due_tasks(request):
     #     return render(request, 'task_graph.html')
 
 def profile(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
@@ -188,7 +191,7 @@ def project_member_detail(request):
     # team_members = TeamMember.objects.all()
 # {'team_members': team_members}
 #  SAm
- team_members = TeamMember.objects.all()
+ team_members = TeamMember.objects.order_by("-role")
  return render(request, 'project_member_detail.html', {'team_members': team_members})
 #  SAm
 # UserProfiles = User.objects.all()

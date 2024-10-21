@@ -46,7 +46,7 @@ def LoginPage(request):
             return redirect('login')
 
         # Authenticate using the username (not email, as authenticate expects a username)
-        user = authenticate(request, username=user.username, password=password)
+        user = authenticate(request, email=email, password=password)
 
         if user is not None:
             login(request, user)
