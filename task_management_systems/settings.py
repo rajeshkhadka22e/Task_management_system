@@ -135,15 +135,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-
-# Directory where Django will search for additional static files
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
-# Directory where static files will be collected for production use
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles" / "static"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
 MEDIA_URL = '/media/'  # URL to access media files
