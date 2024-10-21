@@ -103,7 +103,7 @@ def home(request):
     
     return render(request, 'index.html', context)
 
-# PRANU RECENTLY UNCOMMENTED..........................
+
 def due_tasks(request):
     # Query the database to get tasks that are due
     tasks = Task.objects.filter(due_date__lt='2024-10-10')  # Adjust the date as needed

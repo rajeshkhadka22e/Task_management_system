@@ -2,12 +2,12 @@
 {% load static %}
 {% block hero %}
 
-<div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded mt-10">
+<div class="max-w-6xl mx-auto p-6 bg-gray-300 shadow-md rounded mt-10 ">
     <h1 class="text-3xl font-bold mb-4 capitalize text-blue-500">Projects</h1>
     <!-- Create a horizontal scrollable container for the project cards -->
     <div class="flex gap-10 overflow-x-auto justify-center">
         {% for Projects in Projects %}
-        <div class="w-2/5 min-w-[300px] bg-gray-100 p-4 rounded-lg shadow-md overflow-y-auto" style="max-height: 500px;">
+        <div class="w-2/5 min-w-[300px] bg-gray-100 p-4 rounded-lg shadow-md overflow-y-auto" style="max-height:300px;">
             <h2 class="text-xl font-bold capitalize text-green-500">
                 <strong>Project Name:</strong> {{ Projects.name }}
             </h2>
