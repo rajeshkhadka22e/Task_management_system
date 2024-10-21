@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+from decouple import config, Csv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-fs&r(lf3tz@+j5%9%!=tm^jqi+qkkk#0qf$)i^r00ano^_jv(t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -80,10 +81,21 @@ WSGI_APPLICATION = 'task_management_systems.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": config("DB_ENGINE", "django.db.backends.postgresql"),
+        "NAME": config("POSTGRES_DATABASE", "tsm"),
+        "USER": config("POSTGRES_USER", "suresh"),
+        "PASSWORD": config("POSTGRES_PASSWORD", ""),
+        "HOST": config("POSTGRES_HOST", "localhost"),
+        "PORT": config("DB_PORT", "5432"),
+        'CONN_MAX_AGE': 600
     }
 }
 
