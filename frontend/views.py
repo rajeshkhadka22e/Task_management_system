@@ -1,6 +1,4 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from django.contrib.auth.decorators import login_required
-
 # from django.contrib.auth import authenticate, login, logout
 # from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseBadRequest,HttpResponse,JsonResponse
@@ -41,7 +39,12 @@ def home(request):
     # Format the current time to 12-hour clock with AM/PM
     formatted_time = current_time.strftime("%I:%M:%S %p")  # Example: 02:40:04 PM
 
- 
+    context = {
+        "profiles": UserProfiles,
+        "current_date": current_time,
+        "greeting": greeting,
+        "formatted_time": formatted_time  # Pass the formatted time to the template
+          }
 
     # return render(request, 'index.html', context)
 
@@ -81,12 +84,7 @@ def home(request):
     # Get tasks that are upcoming (today or in the future)
     upcoming_tasks = Task.objects.filter(due_date__gte=timezone.now().date()).order_by('due_date')
 
-  
     context = {
-        "profiles": UserProfiles,
-        "current_date": current_time,
-        "greeting": greeting,
-        "formatted_time": formatted_time,  # Pass the formatted time to the template
         "profiles":UserProfiles,
         'task_lists': task_lists,
         'total_tasks': total_tasks,
@@ -95,7 +93,13 @@ def home(request):
         'overdue_tasks': overdue_tasks,
         'progress_percentage': progress_percentage,
         'upcoming_tasks': upcoming_tasks,
-          }
+
+     }
+
+    # context = {
+    #     "profiles":UserProfiles
+    #     "current_date":current_date
+    # }
     
     return render(request, 'index.html', context)
 
@@ -112,7 +116,6 @@ def due_tasks(request):
     #     return render(request, 'task_graph.html')
 
 
-# @login_required(login_url='/auth/login/')  # Redirects to login page if not authenticated
 def profile(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=request.user)
@@ -124,7 +127,7 @@ def profile(request):
             messages.error(request, 'Please correct the error below.')
     else:
         # For a GET request, populate the form with the user's profile data
-        form = UserProfileForm(instance=request.user)
+        form = UserProfileForm(instance=request.user)  # Prepopulate form with existing profile data
 
     return render(request, 'profile.html', {
         'form': form
