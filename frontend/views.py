@@ -112,7 +112,7 @@ def due_tasks(request):
     #     return render(request, 'task_graph.html')
 
 
-# @login_required(login_url='/auth/login/')  # Redirects to login page if not authenticated
+# @login_required # Redirects to login page if not authenticated
 def profile(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=request.user)
