@@ -19,6 +19,13 @@ from datetime import datetime
 #         logout(request)
 #         return redirect('login') 
 
+from django.shortcuts import render
+from django.utils import timezone
+from datetime import datetime
+from .models import Task, User
+
+from django.utils import timezone
+from datetime import datetime
 
 def home(request):
     task_lists = TaskList.objects.all()
@@ -70,13 +77,11 @@ def home(request):
     completed_tasks = Task.objects.filter(status='completed').count()
     overdue_tasks = Task.objects.filter(status='overdue').count()
 
-    # Calculate percentage of completed tasks
     if total_tasks > 0:
         progress_percentage = (completed_tasks / total_tasks) * 100
     else:
         progress_percentage = 0
 
-    # Get tasks that are upcoming (today or in the future)
     upcoming_tasks = Task.objects.filter(due_date__gte=timezone.now().date()).order_by('due_date')
 
     context = {

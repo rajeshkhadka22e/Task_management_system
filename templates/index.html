@@ -4,45 +4,29 @@
 {% block hero %}
 <div class="flex-1 p-6 overflow-y-auto">
   <!-- Header -->
-  {% for profile in profiles %}
+ 
     <div class="flex justify-between items-center mb-6">
       <div>
         <div class="flex">
-          <h1 id="greeting" class="text-2xl font-bold"></h1>  <!-- Empty for JS to fill -->
-          <h1 class="text-2xl font-bold">{{ profile.get_full_name }}</h1> <!-- Displaying full name directly -->
+          <h1 class="text-2xl font-bold">{{ greeting }}</h1>  <!-- Dynamic greeting from Django -->
+          <h1 class="text-2xl font-bold ml-2">{{ profile.get_full_name }}</h1> <!-- Displaying full name directly -->
         </div>
         <p class="text-gray-600">It's {{ current_date|date:"l, d F Y" }}</p>
       </div>
       <div class="flex items-center space-x-4">
         <span id="time" class="text-black text-xl">{{ formatted_time }}</span>
         <div class="w-12 h-12 rounded-full bg-gray-300">
-            {% if profile.profile_images %}
-               <img src="{{ profile.profile_images.url }}" alt="Profile Picture" class="w-full h-full object-cover rounded-full">
-            {% else %}
-              <span>Profile Picture Placeholder</span>
-            {% endif %}
+          {% if profile.profile_images %}
+            <img src="{{ profile.profile_images.url }}" alt="Profile Picture" class="w-full h-full object-cover rounded-full">
+          {% else %}
+            <span>Profile Picture Placeholder</span>
+          {% endif %}
         </div> 
       </div>
+      
+    
     </div>
-  {% endfor %}
 
-  <!-- Greeting Script -->
-  <script>
-    const greetingElement = document.getElementById('greeting');
-    const currentHour = new Date().getHours();
-    let greeting;
-
-    if (currentHour < 12) {
-        greeting = "Good Morning";
-    } else if (currentHour < 18) {
-        greeting = "Good Afternoon";
-    } else {
-        greeting = "Good Evening";
-    }
-
-    // Set greeting text to include user's full name from the profiles
-    greetingElement.textContent = `${greeting}`; // Only greeting without username
-  </script>
 
   <!-- Task Overview Section -->
   <div class="mb-6 p-6 bg-white shadow-md rounded">
@@ -52,115 +36,63 @@
     </div>
   </div>
 
-  {% comment %} new code  {% endcomment %}
-<!-- Task Metrics -->
-<div class="grid grid-cols-4 gap-4 mb-6">
-  <div class="p-6 bg-white shadow-md rounded">
+  <!-- Task Metrics -->
+  <div class="grid grid-cols-4 gap-4 mb-6">
+    <div class="p-6 bg-white shadow-md rounded">
       <h3 class="text-lg font-bold">Total Tasks</h3>
       <p class="text-2xl">{{ total_tasks }}</p> <!-- Dynamic Total Tasks -->
       <p class="text-green-500">{{ progress_percentage|floatformat:1 }}% <span>↑</span></p> <!-- Dynamic Progress Percentage -->
-  </div>
+    </div>
 
-  <div class="p-6 bg-white shadow-md rounded">
+    <div class="p-6 bg-white shadow-md rounded">
       <h3 class="text-lg font-bold">Ongoing Tasks</h3>
       <p class="text-2xl">{{ ongoing_tasks }}</p> <!-- Dynamic Ongoing Tasks -->
-  </div>
-  <div class="p-6 bg-white shadow-md rounded">
+    </div>
+    <div class="p-6 bg-white shadow-md rounded">
       <h3 class="text-lg font-bold">Completed Tasks</h3>
       <p class="text-2xl">{{ completed_tasks }}</p> <!-- Dynamic Completed Tasks -->
-  </div>
-  <div class="p-6 bg-white shadow-md rounded">
+    </div>
+    <div class="p-6 bg-white shadow-md rounded">
       <h3 class="text-lg font-bold">Overdue Tasks</h3>
       <p class="text-2xl">{{ overdue_tasks }}</p> <!-- Dynamic Overdue Tasks -->
+    </div>
   </div>
-</div>
-
-<!-- Upcoming Tasks & Calendar -->
-<div class="flex justify-between">
-  <div class="w-full p-6 bg-blue-500 shadow-md rounded">
-      <h3 class="text-lg font-bold p-3">Upcoming Tasks</h3>
-      <div class="flex gap-4">
-          {% for task in upcoming_tasks %} 
-          <div class="bg-white shadow-md rounded-lg w-full max-w-md px-3 py-4 ">
-              <h4 class="text-lg font-bold mb-4 flex justify-center  text-blue-500">{{ task.title }}</h4>
-              <p class="flex mb-2"><strong>Description:&nbsp;</strong> {{ task.description }}</p>
-              <p class="flex mb-2"><strong>Assigned To:&nbsp;</strong>Rubab</p>
-              
-              <p class="flex mb-2"><strong>Due Date:&nbsp;</strong> {{ task.due_date }}</p>
-              <p class="flex mb-2"><strong>Status:&nbsp;</strong> {{ task.get_status_display }}</p>
-              <p class="flex mb-2"><strong>Priority:&nbsp;</strong> High</p>
-              
-
-              <div class="mt-4 flex justify-center">
-                  <a href="{% url "project_member_detail" %}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 ml-2">Project Member</a>
-              </div>
-          </div>
-          {% empty %}
-           <p>No upcoming tasks found.</p>
-          {% endfor %} 
-      </div>
-  </div>
-</div>
-
-
-
-<!-- Main content area -->
-<script src="{% static 'js/script.js' %}"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- Task Metrics -->
-  {% comment %} <div class="grid grid-cols-4 gap-4 mb-6">
-    <div class="p-6 bg-white shadow-md rounded">
-      <h3 class="text-lg font-bold">Total Tasks</h3>
-      <p class="text-2xl">32</p>
-      <p class="text-green-500">10% <span>↑</span></p>
-    </div>
-    <div class="p-6 bg-white shadow-md rounded">
-      <h3 class="text-lg font-bold">Ongoing Tasks</h3>
-      <p class="text-2xl">10</p>
-    </div>
-    <div class="p-6 bg-white shadow-md rounded">
-      <h3 class="text-lg font-bold">Completed Tasks</h3>
-      <p class="text-2xl">18</p>
-    </div>
-    <div class="p-6 bg-white shadow-md rounded">
-      <h3 class="text-lg font-bold">Overdue Tasks</h3>
-      <p class="text-2xl">4</p>
-    </div>
-  </div> {% endcomment %}
 
   <!-- Upcoming Tasks & Calendar -->
-  {% comment %} <div class="flex justify-between">
-    <div class="w-full p-6 bg-white shadow-md rounded">
+  <div class="flex justify-between">
+    <div class="w-full p-6 bg-blue-500 shadow-md rounded">
       <h3 class="text-lg font-bold p-3">Upcoming Tasks</h3>
       <div class="flex gap-4">
+        {% for task in upcoming_tasks %}
         <div class="bg-white shadow-md rounded-lg w-full max-w-md px-3 py-4">
-          <h4 class="text-lg font-semibold mb-4 flex justify-center underline">{{ task.title }}</h4>
-          <p class="flex mb-2"><strong>Description:</strong> {{ task.description }}</p>
-          <p class="flex mb-2"><strong>Assigned To:</strong> John Doe</p>
-          <p class="flex mb-2"><strong>Due Date:</strong> {{ task.due_date }}</p>
-          <p class="flex mb-2"><strong>Status:</strong> {{ task.get_status_display }}</p>
-          <p class="flex mb-2"><strong>Priority:</strong> High</p>
-          <div class="mt-4 flex justify-center">
-            <a href="{% url 'project_member_detail' %}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 ml-2">Project Member</a>
-          </div>
+          <h4 class="text-lg font-bold mb-4 flex justify-center text-blue-500">{{ task.title }}</h4>
+          <p class="flex mb-2"><strong>Description:&nbsp;</strong>{{ task.description }}</p>
+          <p class="flex mb-2"><strong>Due Date:&nbsp;</strong>{{ task.due_date }}</p>
+          <p class="flex mb-2"><strong>Status:&nbsp;</strong>{{ task.get_status_display }}</p>
         </div>
+        {% empty %}
+          <p>No upcoming tasks found.</p>
+        {% endfor %}
       </div>
     </div>
   </div>
 </div>
-<script src="{% static 'js/script.js' %}"></script>
-{% endblock hero %} {% endcomment %}
+
+<script>
+  function updateTime() {
+    const timeElement = document.getElementById('time');
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedTime = `${hours % 12 || 12}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds} ${ampm}`;
+    
+    timeElement.textContent = formattedTime;
+  }
+
+  // Update the time every second
+  setInterval(updateTime, 1000);
+</script>
 
 {% endblock %}

@@ -94,12 +94,16 @@ class Project(models.Model):
 
 
 ######user model######
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.utils.text import slugify
+
 class User(AbstractUser):
     experience = models.IntegerField(default=0)  # Experience in years
     role = models.CharField(max_length=50)  # Role of the user
     email = models.EmailField(unique=True)
-    profile_images= models.ImageField(upload_to='profiles/', blank=True, null=True)
-    
+    profile_images = models.ImageField(upload_to='profiles/', blank=True, null=True)
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
@@ -107,6 +111,13 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+    
+    def save(self, *args, **kwargs):
+        if not self.username:
+            # Generate a username based on email or some other logic
+            self.username = slugify(self.email.split('@')[0])  # Generates based on email prefix
+        super().save(*args, **kwargs)
+
     
     from django.db import models
 
