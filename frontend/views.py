@@ -39,12 +39,7 @@ def home(request):
     # Format the current time to 12-hour clock with AM/PM
     formatted_time = current_time.strftime("%I:%M:%S %p")  # Example: 02:40:04 PM
 
-    context = {
-        "profiles": UserProfiles,
-        "current_date": current_time,
-        "greeting": greeting,
-        "formatted_time": formatted_time  # Pass the formatted time to the template
-          }
+
 
     # return render(request, 'index.html', context)
 
@@ -85,6 +80,10 @@ def home(request):
     upcoming_tasks = Task.objects.filter(due_date__gte=timezone.now().date()).order_by('due_date')
 
     context = {
+        "profiles": UserProfiles,
+        "current_date": current_time,
+        "greeting": greeting,
+        "formatted_time": formatted_time, 
         "profiles":UserProfiles,
         'task_lists': task_lists,
         'total_tasks': total_tasks,
