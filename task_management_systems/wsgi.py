@@ -15,4 +15,3 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'task_management_systems.setting
 
 application = get_wsgi_application()
 app = application
-
